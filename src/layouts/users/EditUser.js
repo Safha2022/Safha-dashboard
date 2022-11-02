@@ -28,7 +28,6 @@ function EditUser() {
         username: '',
         email: '',
         password: '',
-        userType: '',
         // Photos: []
     })
     const { id } = useParams()
@@ -78,10 +77,12 @@ function EditUser() {
                                 <MDTypography variant='h5'>Edit User</MDTypography>
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}>
-                                        <TextField value={user?.username} onChange={(e) => { setUser({ ...user, username: e.target.value }) }} name="username" fullWidth label="User UserName" /></MDBox>
+                                        <TextField value={user?.username} onChange={(e) => { setUser({ ...user, username: e.target.value }) }} name="username" fullWidth label="User Name" /></MDBox>
                                     <MDBox mb={3}>
                                         <TextField value={user?.email} onChange={(e) => { setUser({ ...user, email: e.target.value }) }} name="email" fullWidth label="User Email" /></MDBox>
 
+                                    <MDBox mb={3}>
+                                        <TextField value={user?.password} onChange={(e) => { setUser({ ...user, password: e.target.value }) }} name="password" fullWidth label="User Password" /></MDBox>
 
                                     {/* <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
