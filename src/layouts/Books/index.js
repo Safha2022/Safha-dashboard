@@ -29,14 +29,14 @@ function Book() {
     ];
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
-    const deleteUser = async (id) => {
-        if (window.confirm('Are you sure you want to delete this user?')) {
-            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/all/` + id, {
+    const deleteBook = async (id) => {
+        if (window.confirm('Are you sure you want to delete this book?')) {
+            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/all/` + id, {
                 method: 'DELETE'
             })
             const result = await deleted.json()
-            const remainedRows = rows.filter((user) => {
-                return user.id != id
+            const remainedRows = rows.filter((book) => {
+                return book.id != id
             })
             setRows(remainedRows)
             alert(result.messages.join(' '))
@@ -44,18 +44,21 @@ function Book() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((user) => {
+        const jsxRows = rows?.map((book) => {
             return {
-                id: <>{user.id}</>,
-                username: <>{user.username}</>,
-                email: <>{user.email}</>,
-                password: <>{user.password}</>,
-                userType: <>{user.userType}</>,
+                id: <>{book.id}</>,
+                name: <>{book.name}</>,
+                userId: <>{book.userId}</>,
+                pagesCount: <>{book.pagesCount}</>,
+                categoryId: <>{book.categoryId}</>,
+                des: <>{book.des}</>,
+                cover: <>{book.cover}</>,
+                lang: <>{book.lang}</>,
                 options: <>
-                    <MDButton variant="text" color="error" onClick={() => { deleteUser(user.id) }}>
+                    <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/users/${user.id}`}>
+                    <Link to={`/books/${book.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
@@ -66,12 +69,12 @@ function Book() {
         setTableRows(jsxRows);
     }, [rows])
     useEffect(() => {
-        async function getUsers() {
-            const data = await fetch(`http://localhost:3000/api/v1/users/all`);
-            const users = await data.json()
-            setRows(users.data)
+        async function getBooks() {
+            const data = await fetch(`http://localhost:3000/api/v1/books/all`);
+            const books = await data.json()
+            setRows(books.data)
         }
-        getUsers();
+        getBooks();
     }, []);
     return (
         <DashboardLayout>
@@ -98,11 +101,11 @@ function Book() {
                                 >
                                     <Grid item>
                                         <MDTypography variant="h6" color="white">
-                                            Users List
+                                            books List
                                         </MDTypography>
                                     </Grid>
                                     <Grid item>
-                                        <Link to='/users/all/add'>
+                                        <Link to='/books/add'>
                                             <MDButton variant="text" color="white">
                                                 <Icon>add_circle</Icon>&nbsp;Add
                                             </MDButton>
