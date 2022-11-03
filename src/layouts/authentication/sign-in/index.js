@@ -63,7 +63,7 @@ function Basic() {
     const json = await admin.json()
     if (json.success) {
       authCtx.login(json.token)
-      navigate('/')
+      navigate('/admins')
     }
   }
 

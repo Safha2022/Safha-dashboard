@@ -40,6 +40,7 @@ import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Users from "layouts/users";
 import Books from "layouts/Books";
+import Admins from "layouts/Admins";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -55,6 +56,15 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Admins",
+    key: "admins",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/admins",
+    component: <Admins />,
     sidenav: true,
   },
   {

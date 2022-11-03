@@ -47,7 +47,7 @@ function Users() {
         username: <>{user.username}</>,
         email: <>{user.email}</>,
         password: <>{user.password}</>,
-        userType: <>{user.userType}</>,
+        userType: <>{user?.UserType?.type}</>,
         options: <>
          <MDButton variant="text" color="error" onClick={() => { deleteUser(user.id) }}>
             <Icon>delete</Icon>&nbsp;delete

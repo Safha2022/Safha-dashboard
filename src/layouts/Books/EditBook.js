@@ -132,7 +132,7 @@ function EditBook() {
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
-                                                Edit Trip
+                                                Edit Users
                                             </MDTypography>
                                         </Button>
                                     </MDBox>
