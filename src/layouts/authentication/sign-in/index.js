@@ -1,13 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-Coded by www.creative-tim.com
- =========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useState, useRef } from "react";
 
@@ -30,46 +20,51 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+import MDAlert from "components/MDAlert";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-import { AuthContext } from "context/Auth";
+import { AuthContext } from "../../../context/Auth";
 import { useContext } from "react";
 
 function Basic() {
   const authCtx = useContext(AuthContext)
   const navigate = useNavigate()
   const [rememberMe, setRememberMe] = useState(false);
-
+  const [failedToLogin, setFailedToLogin] = useState(false)
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
-
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const [user, setUser] = useState({
+    account: '',
+    password: ''
+  }) 
 
   const signIn = async () => {
-    const admin = await fetch(`${process.env.REACT_APP_API_URL}/admins/login`, {
+    const admin = await fetch(`http://localhost:3000/api/v1/admins/login`, {
       method: 'POST',
-      body: JSON.stringify({
-        email: emailRef.current.querySelector('input').value,
-        password: passwordRef.current.querySelector('input').value
-      }),
+      body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json'
       }
     })
     const json = await admin.json()
+    
     if (json.success) {
+    
       authCtx.login(json.token)
       navigate('/admins')
+    } else {
+      setFailedToLogin(true)
     }
   }
 
   return (
     <BasicLayout image={bgImage}>
       <Card>
+      {failedToLogin && <MDAlert>Wrong email or password!</MDAlert>}
+
         <MDBox
           variant="gradient"
           bgColor="info"
@@ -85,13 +80,16 @@ function Basic() {
             Sign in
           </MDTypography>
         </MDBox>
+      
+        
         <MDBox pt={4} pb={3} px={3}>
+      
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" ref={emailRef} label="Email" fullWidth />
+              <MDInput type="email" name="account" value={user?.account} onChange={(e)=> setUser({...user, account: e.target.value})} label="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" ref={passwordRef} label="Password" fullWidth />
+              <MDInput type="password" name='password' label="Password" fullWidth onChange={(e)=> setUser({...user, password: e.target.value})}/>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -128,6 +126,7 @@ function Basic() {
           </MDBox>
         </MDBox>
       </Card>
+      
     </BasicLayout>
   );
 }

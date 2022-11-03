@@ -11,19 +11,23 @@ import MDTypography from "components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 import DataTable from "examples/Tables/DataTable";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/Auth";
 
 import { Link } from "react-router-dom";
 
+
+
 function Admin() {
+    const{token}= useContext(AuthContext)
     const columns = [
         { Header: "id", accessor: "id", align: "left" },
         { Header: "username", accessor: "username", align: "left" },
         { Header: "email", accessor: "email", align: "center" },
         { Header: "options", accessor: "options", align: "center" },
 
-
     ];
+
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
     const deleteAdmin = async (id) => {
@@ -63,12 +67,23 @@ function Admin() {
     }, [rows])
     useEffect(() => {
         async function getAdmins() {
-            const data = await fetch(`http://localhost:3000/api/v1/admins/all`);
+            const data = await fetch(`http://localhost:3000/api/v1/admins/all`,
+            {
+                method: 'GET',
+                headers: new Headers({
+                    'Authorization': `Bearer ${token}`, 
+                  }),
+                redirect: 'follow'
+            }
+            );
             const admins = await data.json()
-            setRows(admins.data)
+            if(admins?.success){
+                setRows(admins.data)
+            }
         }
         getAdmins();
     }, []);
+    console.log(rows)
     // const token = sessionStorage.getItem('token'); //Add this line
 
     // return fetch('http://localhost:3000/api/v1/admins/all', {
