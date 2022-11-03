@@ -45,6 +45,7 @@ import Books from "layouts/Books";
 import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
 import EditUser from "layouts/users/EditUser";
+import EditBook from "layouts/Books/EditBook";
 
 const routes = [
   {
@@ -90,6 +91,14 @@ const routes = [
     route: "/books",
     component: <Books />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    key: "add-book",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/books/:id",
+    component: <EditBook />,
+    sidenav: false,
   },
   // {
   //   type: "collapse",
