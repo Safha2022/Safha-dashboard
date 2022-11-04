@@ -67,7 +67,7 @@ function Admin() {
     }, [rows])
     useEffect(() => {
         async function getAdmins() {
-            const data = await fetch(`http://localhost:3000/api/v1/admins/all`,
+            const data = await fetch(`${process.env.REACT_APP_API_URL}/admins/all`,
             {
                 method: 'GET',
                 headers: new Headers({
@@ -86,7 +86,7 @@ function Admin() {
     console.log(rows)
     // const token = sessionStorage.getItem('token'); //Add this line
 
-    // return fetch('http://localhost:3000/api/v1/admins/all', {
+    // return fetch(process.env.REACT_APP_API_URL}+'/admins/all', {
     //     method: 'POST',
     //     headers: {
     //         Accept: 'application/json',

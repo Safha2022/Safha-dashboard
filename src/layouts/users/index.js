@@ -13,6 +13,9 @@ import MDButton from "components/MDButton";
 import DataTable from "examples/Tables/DataTable";
 import { useEffect, useState } from "react";
 
+import { useContext } from "react";
+import { AuthContext } from "../../context/Auth";
+
 import { Link } from "react-router-dom";
 
 function Users() {
@@ -26,10 +29,16 @@ function Users() {
   ];
   const [rows, setRows] = useState([]);
   const [tableRows, setTableRows] = useState([])
+  const { token } = useContext(AuthContext);
+
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/all/` + id, {
-        method: 'DELETE'
+      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/` + id, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+          },
       })
       const result = await deleted.json()
       const remainedRows = rows.filter((user) => {
@@ -64,7 +73,7 @@ function Users() {
   }, [rows])
   useEffect(() => {
     async function getUsers() {
-      const data = await fetch(`http://localhost:3000/api/v1/users/all`);
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/users/all`);
       const users = await data.json()
       setRows(users.data)
     }
