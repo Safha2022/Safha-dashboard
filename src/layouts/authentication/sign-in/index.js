@@ -55,6 +55,7 @@ function Basic() {
     
       authCtx.login(json.token)
       navigate('/admins')
+      window.alert('You Loged in')
     } else {
       setFailedToLogin(true)
     }
@@ -63,8 +64,9 @@ function Basic() {
   return (
     <BasicLayout image={bgImage}>
       <Card>
-      {failedToLogin && <MDAlert>Wrong email or password!</MDAlert>}
+      {failedToLogin && <MDAlert color="error" dismissible>Wrong email or password!</MDAlert>}
 
+      {/* <MDAlert>This is an alert!</MDAlert> */}
         <MDBox
           variant="gradient"
           bgColor="info"

@@ -41,6 +41,7 @@ import SignUp from "layouts/authentication/sign-up";
 import Users from "layouts/users";
 import Books from "layouts/Books";
 import Admins from "layouts/Admins";
+// import Reviews from "layouts/review";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -110,6 +111,15 @@ const routes = [
     component: <EditBook />,
     sidenav: false,
   },
+  // {
+  //   type: "collapse",
+  //   name: "Reviews",
+  //   key: "Reviews",
+  //   icon: <Icon fontSize="small">forest</Icon>,
+  //   route: "/reviews",
+  //   component: <Reviews />,
+  //   sidenav: true,
+  // },
   // {
   //   type: "collapse",
   //   key: "add-book",
