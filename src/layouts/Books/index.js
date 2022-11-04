@@ -70,7 +70,7 @@ function Book() {
     }, [rows])
     useEffect(() => {
         async function getBooks() {
-            const data = await fetch(`http://localhost:3000/api/v1/books/all`);
+            const data = await fetch(`${process.env.REACT_APP_API_URL}/books/all`);
             const books = await data.json()
             setRows(books.data)
         }

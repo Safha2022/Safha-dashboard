@@ -42,7 +42,7 @@ function Basic() {
   }) 
 
   const signIn = async () => {
-    const admin = await fetch(`http://localhost:3000/api/v1/admins/login`, {
+    const admin = await fetch(process.env.REACT_APP_API_URL+'/admins/login', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

@@ -28,7 +28,7 @@ function Users() {
   const [tableRows, setTableRows] = useState([])
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/all/` + id, {
+      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/` + id, {
         method: 'DELETE'
       })
       const result = await deleted.json()
@@ -64,7 +64,7 @@ function Users() {
   }, [rows])
   useEffect(() => {
     async function getUsers() {
-      const data = await fetch(`http://localhost:3000/api/v1/users/all`);
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/users/all`);
       const users = await data.json()
       setRows(users.data)
     }
