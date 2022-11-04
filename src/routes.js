@@ -48,6 +48,7 @@ import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
 import EditUser from "layouts/users/EditUser";
 import EditBook from "layouts/Books/EditBook";
+import EditAdmin from "layouts/Admins/EditAdmin";
 
 const routes = [
   {
@@ -67,6 +68,14 @@ const routes = [
     route: "/admins",
     component: <Admins />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    key: "add-user",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/admins/:id",
+    component: <EditAdmin />,
+    sidenav: false,
   },
   {
     type: "collapse",
