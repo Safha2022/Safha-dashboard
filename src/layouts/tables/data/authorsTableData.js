@@ -17,6 +17,12 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 
+
+import { Link } from "react-router-dom";
+import Icon from "@mui/material/Icon";
+import MDButton from "components/MDButton";
+import DataTable from "examples/Tables/DataTable";
+
 // Images
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
@@ -46,11 +52,11 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "author", accessor: "author", width: "45%", align: "left" },
-      { Header: "Task", accessor: "task", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
+      { Header: "AUTHOR", accessor: "author", width: "45%", align: "left" },
+      { Header: "USERNAME", accessor: "task", align: "left" },
+      { Header: "EMAIL", accessor: "status", align: "center" },
       { Header: "employed", accessor: "employed", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "OPTION", accessor: "action", align: "center" },
     ],
 
     rows: [
@@ -67,10 +73,16 @@ export default function data() {
             23/04/18
           </MDTypography>
         ),
-        action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+        OPTION: (
+          <MDButton variant="text" color="error" onClick={() => { 'deleteUser(user.id)' }}>
+          <Icon>delete</Icon>&nbsp;delete
+        </MDButton>,
+        <Link to={'/'}>
+          <MDButton variant="text" color="dark">
+            <Icon>edit</Icon>&nbsp;edit
+          </MDButton>
+        </Link>
+
         ),
       },
       {

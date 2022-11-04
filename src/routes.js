@@ -33,6 +33,7 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
+import Authors from "layouts/authors"
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -43,13 +44,13 @@ import Books from "layouts/Books";
 import Admins from "layouts/Admins";
 import AddUser from "layouts/users/AddUser"
 // import Reviews from "layouts/review";
-
+//react icons
+import { RiQuillPenLine } from "react-icons/ri";
 // @mui icons
 import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
 import EditUser from "layouts/users/EditUser";
 import EditBook from "layouts/Books/EditBook";
-import EditAdmin from "layouts/Admins/EditAdmin";
 
 const routes = [
   {
@@ -69,14 +70,6 @@ const routes = [
     route: "/admins",
     component: <Admins />,
     sidenav: true,
-  },
-  {
-    type: "collapse",
-    key: "add-user",
-    icon: <Icon fontSize="small">forest</Icon>,
-    route: "/admins/:id",
-    component: <EditAdmin />,
-    sidenav: false,
   },
   {
     type: "collapse",
@@ -111,6 +104,15 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/books",
     component: <Books />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Authors",
+    key: "author",
+    icon: <RiQuillPenLine />,
+    route: "/authors",
+    component: <Authors />,
     sidenav: true,
   },
   {
