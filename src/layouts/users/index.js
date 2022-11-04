@@ -33,7 +33,7 @@ function Users() {
       })
       const result = await deleted.json()
       const remainedRows = rows.filter((user) => {
-        return user.id != id
+        return user.id !== id
       })
       setRows(remainedRows)
       alert(result.messages.join(' '))
@@ -59,7 +59,7 @@ function Users() {
           </Link>
         </>
       };
-    });
+    },[]);
     setTableRows(jsxRows);
   }, [rows])
   useEffect(() => {
@@ -99,7 +99,7 @@ function Users() {
                     </MDTypography>
                   </Grid>
                   <Grid item>
-                    <Link to='/users/all/add'>
+                    <Link to='/users/add'>
                       <MDButton variant="text" color="white">
                         <Icon>add_circle</Icon>&nbsp;Add
                       </MDButton>

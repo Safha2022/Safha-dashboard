@@ -41,6 +41,7 @@ import SignUp from "layouts/authentication/sign-up";
 import Users from "layouts/users";
 import Books from "layouts/Books";
 import Admins from "layouts/Admins";
+import AddUser from "layouts/users/AddUser"
 // import Reviews from "layouts/review";
 
 // @mui icons
@@ -77,15 +78,15 @@ const routes = [
     component: <Users />,
     sidenav: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Add User",
-  //   key: "add-user",
-  //   icon: <Icon fontSize="small">forest</Icon>,
-  //   route: "/trips/add",
-  //   component: <AddTrip />,
-  //   sidenav: false,
-  // },
+  {
+    type: "collapse",
+    name: "Add User",
+    key: "add-user",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/users/add",
+    component: <AddUser />,
+    sidenav: false,
+  },
   {
     type: "collapse",
     key: "add-user",
