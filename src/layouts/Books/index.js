@@ -11,9 +11,10 @@ import MDTypography from "components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 import DataTable from "examples/Tables/DataTable";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
+import { AuthContext } from "context/Auth";
 
 function Book() {
     const columns = [
@@ -29,10 +30,16 @@ function Book() {
     ];
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
+    const{token}= useContext(AuthContext)
+    console.log("Token is ",token)
     const deleteBook = async (id) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
-            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/all/` + id, {
-                method: 'DELETE'
+            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/` + id, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`,
+                },
             })
             const result = await deleted.json()
             const remainedRows = rows.filter((book) => {
