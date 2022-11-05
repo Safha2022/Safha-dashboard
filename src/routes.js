@@ -46,7 +46,7 @@ import Admins from "layouts/Admins";
 import AddUser from "layouts/users/AddUser";
 import Review from "layouts/Reviews";
 import Comment from "layouts/Comments";
-import Categry from "layouts/Categories";
+import Category from "layouts/Categories";
 import AddCategory from "layouts/Categories/AddCategory";
 // import Reviews from "layouts/review";
 //react icons
@@ -56,6 +56,7 @@ import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
 import EditUser from "layouts/users/EditUser";
 import EditBook from "layouts/Books/EditBook";
+import EditCategory from "layouts/Categories/EditCategory";
 
 const routes = [
   {
@@ -117,7 +118,7 @@ const routes = [
     key: "categories",
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/categories",
-    component: <Categry />,
+    component: <Category />,
     sidenav: true,
   },
   {
@@ -127,6 +128,15 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/categories/add",
     component: <AddCategory />,
+    sidenav: false,
+  },
+  {
+    type: "collapse",
+    name: "Edit Category",
+    key: "edit-Category",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/categories/edit",
+    component: <EditCategory />,
     sidenav: false,
   },
   {

@@ -16,7 +16,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "context/Auth";
 
-function Categry() {
+function Category() {
     const columns = [
         { Header: "id", accessor: "id", align: "left" },
         { Header: "name", accessor: "name", align: "left" },
@@ -27,8 +27,8 @@ function Categry() {
     const [tableRows, setTableRows] = useState([])
     const{token}= useContext(AuthContext)
     console.log("Token is ",token)
-    const deleteCategry = async (id) => {
-        if (window.confirm('Are you sure you want to delete this categry?')) {
+    const deleteCategory = async (id) => {
+        if (window.confirm('Are you sure you want to delete this category?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/categories/` + id, {
                 method: 'PUT',
                 headers: {
@@ -37,8 +37,8 @@ function Categry() {
                 },
             })
             const result = await deleted.json()
-            const remainedRows = rows.filter((categry) => {
-                return categry.id != id
+            const remainedRows = rows.filter((category) => {
+                return category.id != id
             })
             setRows(remainedRows)
             alert(result.messages.join(' '))
@@ -46,16 +46,16 @@ function Categry() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((categry) => {
+        const jsxRows = rows?.map((category) => {
             return {
-                id: <>{categry.id}</>,
-                name: <>{categry.name}</>,
-                des: <>{categry.des}</>,
+                id: <>{category.id}</>,
+                name: <>{category.name}</>,
+                des: <>{category.des}</>,
                 options: <>
-                    <MDButton variant="text" color="error" onClick={() => { deleteCategry(categry.id) }}>
+                    <MDButton variant="text" color="error" onClick={() => { deleteCategory(category.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/categories/${categry.id}`}>
+                    <Link to={`/categories/${category.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
@@ -131,4 +131,4 @@ function Categry() {
     );
 }
 
-export default Categry;
+export default Category;

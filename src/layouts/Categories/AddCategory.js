@@ -50,14 +50,14 @@ function AddCategory() {
                     <Card>
                         <form method="post" onSubmit={addCategory}>
                             <MDBox p={3}>
-                                <MDTypography variant='h5'>Add New Categry</MDTypography>
+                                <MDTypography variant='h5'>Add New Category</MDTypography>
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}><TextField name="name" fullWidth label="name" value={category.name} onChange={(e) => setCategory({...category, name: e.target.value})}/></MDBox>
                                     <MDBox mb={3}><TextField name="des" fullWidth label="des" value={category.des} onChange={(e) => setCategory({...category, des: e.target.value})} /></MDBox>
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
-                                                Add A New Categry
+                                                Add A New Category
                                             </MDTypography>
                                         </Button>
                                     </MDBox>
