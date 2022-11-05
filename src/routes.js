@@ -42,7 +42,8 @@ import SignUp from "layouts/authentication/sign-up";
 import Users from "layouts/users";
 import Books from "layouts/Books";
 import Admins from "layouts/Admins";
-import AddUser from "layouts/users/AddUser"
+import AddUser from "layouts/users/AddUser";
+import Review from "layouts/Reviews";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -69,6 +70,15 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/admins",
     component: <Admins />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Authors",
+    key: "author",
+    icon: <RiQuillPenLine />,
+    route: "/authors",
+    component: <Authors />,
     sidenav: true,
   },
   {
@@ -106,15 +116,7 @@ const routes = [
     component: <Books />,
     sidenav: true,
   },
-  {
-    type: "collapse",
-    name: "Authors",
-    key: "author",
-    icon: <RiQuillPenLine />,
-    route: "/authors",
-    component: <Authors />,
-    sidenav: true,
-  },
+ 
   {
     type: "collapse",
     key: "add-book",
@@ -122,6 +124,15 @@ const routes = [
     route: "/books/:id",
     component: <EditBook />,
     sidenav: false,
+  },
+  {
+    type: "collapse",
+    name: "Reviews",
+    key: "Reviews",
+    icon: <RiQuillPenLine />,
+    route: "/review",
+    component: <Review />,
+    sidenav: true,
   },
   // {
   //   type: "collapse",

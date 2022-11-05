@@ -16,25 +16,21 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "context/Auth";
 
-function Book() {
+function Review() {
     const columns = [
         { Header: "id", accessor: "id", align: "left" },
-        { Header: "name", accessor: "name", align: "left" },
+        { Header: "content", accessor: "content", align: "left" },
         { Header: "userId", accessor: "userId", align: "center" },
-        { Header: "pagesCount", accessor: "pagesCount", align: "center" },
-        { Header: "categoryId", accessor: "categoryId", align: "center" },
-        { Header: "des", accessor: "des", align: "center" },
-        { Header: "cover", accessor: "cover", align: "center" },
-        { Header: "lang", accessor: "lang", align: "center" },
+        { Header: "bookId", accessor: "bookId", align: "center" },
         { Header: "options", accessor: "options", align: "center" },
     ];
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
     const{token}= useContext(AuthContext)
     console.log("Token is ",token)
-    const deleteBook = async (id) => {
-        if (window.confirm('Are you sure you want to delete this book?')) {
-            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/` + id, {
+    const deleteReview = async (id) => {
+        if (window.confirm('Are you sure you want to delete this review?')) {
+            const deleted = await fetch(`${process.env.REACT_APP_API_URL}/reviews/` + id, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",
@@ -42,8 +38,8 @@ function Book() {
                 },
             })
             const result = await deleted.json()
-            const remainedRows = rows.filter((book) => {
-                return book.id != id
+            const remainedRows = rows.filter((review) => {
+                return review.id != id
             })
             setRows(remainedRows)
             alert(result.messages.join(' '))
@@ -51,21 +47,17 @@ function Book() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((book) => {
+        const jsxRows = rows?.map((review) => {
             return {
-                id: <>{book.id}</>,
-                name: <>{book.name}</>,
-                userId: <>{book.userId}</>,
-                pagesCount: <>{book.pagesCount}</>,
-                categoryId: <>{book.categoryId}</>,
-                des: <>{book.des}</>,
-                cover: <>{book.cover}</>,
-                lang: <>{book.lang}</>,
+                id: <>{review.id}</>,
+                content: <>{review.content}</>,
+                userId: <>{review.userId}</>,
+                bookId: <>{review.bookId}</>,
                 options: <>
-                    <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
+                    <MDButton variant="text" color="error" onClick={() => { deleteReview(review.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/books/${book.id}`}>
+                    <Link to={`/reviews/${review.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
@@ -76,12 +68,12 @@ function Book() {
         setTableRows(jsxRows);
     }, [rows])
     useEffect(() => {
-        async function getBooks() {
-            const data = await fetch(`${process.env.REACT_APP_API_URL}/books/all`);
-            const books = await data.json()
-            setRows(books.data)
+        async function getReviews() {
+            const data = await fetch(`${process.env.REACT_APP_API_URL}/reviews/all`);
+            const reviews = await data.json()
+            setRows(reviews.data)
         }
-        getBooks();
+        getReviews();
     }, []);
     return (
         <DashboardLayout>
@@ -108,11 +100,11 @@ function Book() {
                                 >
                                     <Grid item>
                                         <MDTypography variant="h6" color="white">
-                                            books List
+                                        Review List
                                         </MDTypography>
                                     </Grid>
                                     <Grid item>
-                                        <Link to='/books/add'>
+                                        <Link to='/reviews/add'>
                                             <MDButton variant="text" color="white">
                                                 <Icon>add_circle</Icon>&nbsp;Add
                                             </MDButton>
@@ -141,4 +133,4 @@ function Book() {
     );
 }
 
-export default Book;
+export default Review;

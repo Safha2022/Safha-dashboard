@@ -33,8 +33,8 @@ function Users() {
 
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/users/` + id, {
-        method: 'DELETE',
+      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/admins/` + id, {
+        method: 'PUT',
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`,
