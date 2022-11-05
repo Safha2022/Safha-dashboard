@@ -26,7 +26,7 @@ function EditCategory() {
     })
     const { id } = useParams()
     const navigate = useNavigate()
-    const editUser = async (event) => {
+    const editCategory = async (event) => {
         event.preventDefault()
         let userData = new FormData(event.target)
         const added = await fetch(`${process.env.REACT_APP_API_URL}/categories/edit/${id}`, {
@@ -58,7 +58,7 @@ function EditCategory() {
             <Grid container spacing={6}>
                 <Grid item xs={12}>
                     <Card>
-                        <form method="post" onSubmit={editUser}>
+                        <form method="post" onSubmit={editCategory}>
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Edit Category</MDTypography>
                                 <MDBox pt={4} pb={2}>
