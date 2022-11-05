@@ -41,6 +41,7 @@ import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Users from "layouts/users";
 import Books from "layouts/Books";
+import AddBook from "layouts/Books/AddBook";
 import Admins from "layouts/Admins";
 import AddUser from "layouts/users/AddUser";
 import Review from "layouts/Reviews";
@@ -136,6 +137,15 @@ const routes = [
     route: "/books",
     component: <Books />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Add Book",
+    key: "add-Book",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/books/add",
+    component: <AddBook />,
+    sidenav: false,
   },
  
   {
