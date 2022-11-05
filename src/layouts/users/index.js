@@ -38,7 +38,7 @@ function Users() {
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`,
-          },
+        },
       })
       const result = await deleted.json()
       const remainedRows = rows.filter((user) => {
