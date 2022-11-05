@@ -46,6 +46,7 @@ import AddUser from "layouts/users/AddUser";
 import Review from "layouts/Reviews";
 import Comment from "layouts/Comments";
 import Categry from "layouts/Categories";
+import AddCategory from "layouts/Categories/AddCategory";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -111,12 +112,21 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Categries",
-    key: "categries",
+    name: "Categories",
+    key: "categories",
     icon: <Icon fontSize="small">forest</Icon>,
-    route: "/categries",
+    route: "/categories",
     component: <Categry />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Add Category",
+    key: "add-Category",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/categories/add",
+    component: <AddCategory />,
+    sidenav: false,
   },
   {
     type: "collapse",
