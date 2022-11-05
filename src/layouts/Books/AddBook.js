@@ -12,10 +12,13 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/Auth";
 
 function AddBook() {
+
+    const { token } = useContext(AuthContext)
     const handleOnChange = (e) => {
         Book[e.target.name] = Book[e.target.value]
     }
@@ -23,10 +26,11 @@ function AddBook() {
         name: '',
         userId: '',
         pagesCount: '',
-        categoryId:'',
+        categoryId: '',
         des: '',
         cover: '',
         lang: '',
+        publish:'',
 
 
     })
@@ -37,6 +41,7 @@ function AddBook() {
         const added = await fetch(`${process.env.REACT_APP_API_URL}/books`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(Book)
@@ -66,6 +71,7 @@ function AddBook() {
                                     {/* <MDBox mb={3}><TextField name="cover" fullWidth label="cover" value={Book.cover} onChange={(e) => setBook({ ...category, cover: e.target.value })} /></MDBox> */}
                                     {/* <MDBox mb={3}><TextField name="publish" fullWidth label="publish" value={Book.publish} onChange={(e) => setBook({ ...Book, publish: e.target.value })} /></MDBox> */}
                                     <MDBox mb={3}><TextField name="lang" fullWidth label="lang" value={Book.lang} onChange={(e) => setBook({ ...Book, lang: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="publish" fullWidth label="publish" value={Book.publish} onChange={(e) => setBook({ ...Book, publish: e.target.value })} /></MDBox>
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
