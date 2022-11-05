@@ -31,11 +31,11 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
+// import Tables from "layouts/tables";
+// import Billing from "layouts/billing";
 import Authors from "layouts/authors"
-import RTL from "layouts/rtl";
-import Notifications from "layouts/notifications";
+// import RTL from "layouts/rtl";
+// import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -45,6 +45,7 @@ import Admins from "layouts/Admins";
 import AddUser from "layouts/users/AddUser";
 import Review from "layouts/Reviews";
 import Comment from "layouts/Comments";
+import Categry from "layouts/Categories";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -110,6 +111,15 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Categries",
+    key: "categries",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/categries",
+    component: <Categry />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
     name: "Books",
     key: "books",
     icon: <Icon fontSize="small">forest</Icon>,
@@ -161,42 +171,42 @@ const routes = [
   //   component: <EditUser />,
   //   sidenav: false,
   // },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-    sidenav: true,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-    sidenav: true,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-    sidenav: true,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-    sidenav: true,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/tables",
+  //   component: <Tables />,
+  //   sidenav: true,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Billing",
+  //   key: "billing",
+  //   icon: <Icon fontSize="small">receipt_long</Icon>,
+  //   route: "/billing",
+  //   component: <Billing />,
+  //   sidenav: true,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "RTL",
+  //   key: "rtl",
+  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
+  //   route: "/rtl",
+  //   component: <RTL />,
+  //   sidenav: true,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  //   sidenav: true,
+  // },
   {
     type: "collapse",
     name: "Profile",
