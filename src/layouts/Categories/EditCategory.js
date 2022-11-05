@@ -20,6 +20,7 @@ function EditCategory() {
     
     const { token } = useContext(AuthContext);
     console.log("token",token)
+    
     const [category, setCategory] = useState({
         name: '',
         des: '',
@@ -28,16 +29,16 @@ function EditCategory() {
     const navigate = useNavigate()
     const editCategory = async (event) => {
         event.preventDefault()
-        let CategoryData = new FormData(event.target)
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/categories/edit/${id}`, {
+        // let CategoryData = new FormData(event.target)
+        const edit = await fetch(`${process.env.REACT_APP_API_URL}/categories/edit/${id}`, {
             method: 'PUT',
-            body: CategoryData,
+            body: JSON.stringify(category),
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
             },
         })
-        const json = await added.json()
+        const json = await edit.json()
         alert(json.messages.join(' '))
         if (json.success) {
             navigate('/categories')
