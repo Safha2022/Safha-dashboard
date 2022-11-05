@@ -14,9 +14,11 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 // import Icon from "@mui/material/Icon";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "context/Auth";
+// import { token } from "stylis";
 // import Avatar from '@mui/material/Avatar';
 
 // import IconButton from '@mui/material/IconButton';
@@ -24,20 +26,25 @@ import { useParams } from "react-router-dom";
 
 
 function EditAdmin() {
+    const { token } = useContext(AuthContext);
     const [admin, setAdmin] = useState({
         username: '',
         email: '',
         password: '',
-        // Photos: []
+        userTypeId: ''
     })
     const { id } = useParams()
     const navigate = useNavigate()
     const editAdmin = async (event) => {
         event.preventDefault()
-        let adminData = new FormData(event.target)
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/admin/${id}`, {
+        // let adminData = new FormData(event.target)
+        const added = await fetch(`${process.env.REACT_APP_API_URL}/admins/edit/${id}`, {
             method: 'PUT',
-            body: adminData
+            body: JSON.stringify(admin),
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            },
         })
         const json = await added.json()
         alert(json.messages.join(' '))
@@ -60,7 +67,7 @@ function EditAdmin() {
     //   }
     useEffect(() => {
         async function getAdmin() {
-            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admin/${id}`)
+            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins/all`)
             const json = await AdminData.json()
             setAdmin(json.data)
         }
@@ -83,6 +90,9 @@ function EditAdmin() {
 
                                     <MDBox mb={3}>
                                         <TextField value={admin?.password} onChange={(e) => { setAdmin({ ...admin, password: e.target.value }) }} name="password" fullWidth label="Admin Password" /></MDBox>
+
+                                    <MDBox mb={3}>
+                                        <TextField value={admin?.userTypeId} onChange={(e) => { setAdmin({ ...admin, userTypeId: e.target.value }) }} name="userTypeId" fullWidth label="Admin userTypeId" /></MDBox>
 
                                     {/* <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>

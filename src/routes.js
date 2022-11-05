@@ -93,7 +93,7 @@ const routes = [
     name: "Admins",
     key: "admins",
     icon: <RiAdminLine />,
-    route: "/admins",
+    route: "/admins/:id",
     component: <EditAdmin />,
     sidenav: false,
   },
