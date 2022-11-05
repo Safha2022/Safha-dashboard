@@ -12,35 +12,36 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "context/Auth";
 
 function AddAdmin() {
-    const handleOnChange = (e) => {
-        user[e.target.name] = user[e.target.value]
-    }
-    const [user, setUser]= useState({
+    const { token } = useContext(AuthContext);
+    const [admin, setAdmin]= useState({
         username:'',
         email:'',
         password:'',
-        passwordConfirmation:''
+        passwordConfirmation:'',
+        userTypeId: 1
     })
     const navigate = useNavigate()
-    const addUser = async (event) => {
+    const addAdmin = async (event) => {
         event.preventDefault()
-        console.log(user)        
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/users/signup`, {
+        console.log(admin)        
+        const added = await fetch(`${process.env.REACT_APP_API_URL}/admins`, {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
             },
-            body:  JSON.stringify(user)
+            body:  JSON.stringify(admin)
         })
         const json = await added.json()
         console.log(json)
         alert(json.messages.join(' '))
         if (json.success) {
-            navigate('/users')
+            navigate('/admins')
         }
     }
     return (
@@ -49,18 +50,18 @@ function AddAdmin() {
             <Grid container spacing={6}>
                 <Grid item xs={12}>
                     <Card>
-                        <form method="post" onSubmit={addUser}>
+                        <form method="post" onSubmit={addAdmin}>
                             <MDBox p={3}>
-                                <MDTypography variant='h5'>Add New User</MDTypography>
+                                <MDTypography variant='h5'>Add New Admin</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({...user, username: e.target.value})}/></MDBox>
-                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({...user, email: e.target.value})} /></MDBox>
-                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({...user, password: e.target.value})} /></MDBox>
-                                    <MDBox mb={3}><TextField name="passwordConfirmation" fullWidth value={user.passwordConfirmation} label="Password Confirmation" onChange={(e) => setUser({...user, passwordConfirmation: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={admin.username} onChange={(e) => setAdmin({...admin, username: e.target.value})}/></MDBox>
+                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={admin.email} onChange={(e) => setAdmin({...admin, email: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={admin.password} onChange={(e) => setAdmin({...admin, password: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="password" fullWidth label="PasswordConfirmation" value={admin.passwordConfirmation} onChange={(e) => setAdmin({...admin, passwordConfirmation: e.target.value})} /></MDBox>
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
-                                                Add A New User
+                                                Add A New Admin
                                             </MDTypography>
                                         </Button>
                                     </MDBox>
