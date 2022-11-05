@@ -67,6 +67,7 @@ import Icon from "@mui/material/Icon";
 import EditUser from "layouts/users/EditUser";
 import EditBook from "layouts/Books/EditBook";
 import EditCategory from "layouts/Categories/EditCategory";
+import EditAdmin from "layouts/Admins/EditAdmin";
 
 const routes = [
   {
@@ -86,6 +87,15 @@ const routes = [
     route: "/admins",
     component: <Admins />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Admins",
+    key: "admins",
+    icon: <RiAdminLine />,
+    route: "/admins",
+    component: <EditAdmin />,
+    sidenav: false,
   },
   {
     type: "collapse",
