@@ -14,34 +14,43 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
+import { AuthContext } from "context/Auth";
 
 
 function EditBook() {
+    const { token } = useContext(AuthContext);
     const [book, setBook] = useState({
         name: '',
-        // pagesCount: '',
+        userId: '',
+        pagesCount: '',
+        categoryId: '',
         des: '',
-        // cover: '',
-        // lang: '',
-        // Photos: []
+        cover: '',
+        lang: '',
+        publish: '',
+
     })
     const { id } = useParams()
     const navigate = useNavigate()
     const editBook = async (event) => {
         event.preventDefault()
-        let bookData = new FormData(event.target)
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/books/${id}`, {
+        // let bookData = new FormData(event.target)
+        const added = await fetch(`${process.env.REACT_APP_API_URL}/books/edit/${id}`, {
             method: 'PUT',
-            body: bookData
+            body:  JSON.stringify(book),
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            },
         })
-        const json = await added.json() 
+        const json = await added.json()
         alert(json.messages.join(' '))
         if (json.success) {
             navigate('/books')
@@ -62,7 +71,7 @@ function EditBook() {
     //   }
     useEffect(() => {
         async function getBook() {
-            const BookData = await fetch(`${process.env.REACT_APP_API_URL}/books/${id}`)
+            const BookData = await fetch(`${process.env.REACT_APP_API_URL}/books/edit/${id}`)
             const json = await BookData.json()
             setBook(json.data)
         }
@@ -81,7 +90,19 @@ function EditBook() {
                                     <MDBox mb={3}>
                                         <TextField value={book?.name} onChange={(e) => { setBook({ ...book, name: e.target.value }) }} name="name" fullWidth label="Book Name" /></MDBox>
                                     <MDBox mb={3}>
+                                        <TextField value={book?.userId} onChange={(e) => { setBook({ ...book, userId: e.target.value }) }} name="userId" fullWidth label="Book userId" /></MDBox>
+                                    <MDBox mb={3}>
+                                        <TextField value={book?.pagesCount} onChange={(e) => { setBook({ ...book, pagesCount: e.target.value }) }} name="pagesCount" fullWidth label="Book pagesCount" /></MDBox>
+                                    <MDBox mb={3}>
+                                        <TextField value={book?.categoryId} onChange={(e) => { setBook({ ...book, categoryId: e.target.value }) }} name="categoryId" fullWidth label="Book categoryId" /></MDBox>
+                                    <MDBox mb={3}>
                                         <TextField value={book?.des} onChange={(e) => { setBook({ ...book, des: e.target.value }) }} name="des" fullWidth label="Book Description" /></MDBox>
+                                    <MDBox mb={3}>
+                                        <TextField value={book?.cover} onChange={(e) => { setBook({ ...book, cover: e.target.value }) }} name="cover" fullWidth label="Book cover" /></MDBox>
+                                    <MDBox mb={3}>
+                                        <TextField value={book?.lang} onChange={(e) => { setBook({ ...book, lang: e.target.value }) }} name="lang" fullWidth label="Book lang" /></MDBox>
+                                    <MDBox mb={3}>
+                                        <TextField value={book?.publish} onChange={(e) => { setBook({ ...book, publish: e.target.value }) }} name="publish" fullWidth label="Book publish" /></MDBox>
 
 
 

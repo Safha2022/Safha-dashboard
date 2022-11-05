@@ -65,7 +65,7 @@ function Book() {
                     <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/books/${book.id}`}>
+                    <Link to={`/books/edit/${book.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
