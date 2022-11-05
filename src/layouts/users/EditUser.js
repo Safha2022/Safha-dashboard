@@ -67,14 +67,14 @@ function EditUser() {
     //       alert(result.messages.join(' '))
     //     }
     //   }
-    // useEffect(() => {
-    //     async function getUser() {
-    //         const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}`)
-    //         const json = await UserData.json()
-    //         setUser(json.data)
-    //     }
-    //     getUser();
-    // }, [])
+    useEffect(() => {
+        async function getUser() {
+            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users/all`)
+            const json = await UserData.json()
+            setUser(json.data)
+        }
+        getUser();
+    }, [])
     return (
         <DashboardLayout>
             <DashboardNavbar />

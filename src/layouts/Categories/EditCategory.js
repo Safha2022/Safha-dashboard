@@ -20,7 +20,7 @@ function EditCategory() {
     
     const { token } = useContext(AuthContext);
     console.log("token",token)
-    const [user, setUser] = useState({
+    const [category, setCategory] = useState({
         name: '',
         des: '',
     })
@@ -28,10 +28,10 @@ function EditCategory() {
     const navigate = useNavigate()
     const editCategory = async (event) => {
         event.preventDefault()
-        let userData = new FormData(event.target)
+        let CategoryData = new FormData(event.target)
         const added = await fetch(`${process.env.REACT_APP_API_URL}/categories/edit/${id}`, {
             method: 'PUT',
-            body: userData,
+            body: CategoryData,
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
@@ -44,14 +44,14 @@ function EditCategory() {
         }
     }
 
-    // useEffect(() => {
-    //     async function getUser() {
-    //         const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}`)
-    //         const json = await UserData.json()
-    //         setUser(json.data)
-    //     }
-    //     getUser();
-    // }, [])
+    useEffect(() => {
+        async function getCategory() {
+            const CategoryData = await fetch(`${process.env.REACT_APP_API_URL}/categories/${id}`)
+            const json = await CategoryData.json()
+            setCategory(json.data)
+        }
+        getCategory();
+    }, [])
     return (
         <DashboardLayout>
             <DashboardNavbar />
@@ -63,16 +63,16 @@ function EditCategory() {
                                 <MDTypography variant='h5'>Edit Category</MDTypography>
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}>
-                                        <TextField value={user?.name} onChange={(e) => { setUser({ ...user, name: e.target.value }) }} name="name" fullWidth label="User Name" />
+                                        <TextField value={category?.name} onChange={(e) => { setCategory({ ...category, name: e.target.value }) }} name="name" fullWidth label="category Name" />
                                     </MDBox>
                                     <MDBox mb={3}>
-                                        <TextField value={user?.des} onChange={(e) => { setUser({ ...user, des: e.target.value }) }} name="des" fullWidth label="User des" />
+                                        <TextField value={category?.des} onChange={(e) => { setCategory({ ...category, des: e.target.value }) }} name="des" fullWidth label="category des" />
                                     </MDBox>
 
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
-                                                Edit Users
+                                                Edit categories
                                             </MDTypography>
                                         </Button>
                                     </MDBox>
