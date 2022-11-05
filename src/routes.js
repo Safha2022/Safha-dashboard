@@ -69,6 +69,8 @@ import EditBook from "layouts/Books/EditBook";
 import EditCategory from "layouts/Categories/EditCategory";
 import EditAdmin from "layouts/Admins/EditAdmin";
 import AddAdmin from "layouts/Admins/AddAdmin";
+import AddReview from "layouts/Reviews/AddReview";
+import EditReview from "layouts/Reviews/EditReview";
 
 const routes = [
   {
@@ -94,7 +96,7 @@ const routes = [
     name: "Admins",
     key: "admins",
     icon: <RiAdminLine />,
-    route: "/admins/:id",
+    route: "/admins/edit/:id",
     component: <EditAdmin />,
     sidenav: false,
   },
@@ -201,7 +203,7 @@ const routes = [
     name: "Reviews",
     key: "Reviews",
     icon: <MdRateReview />,
-    route: "/review",
+    route: "/reviews",
     component: <Review />,
     sidenav: true,
   },
@@ -214,23 +216,24 @@ const routes = [
     component: <Comment />,
     sidenav: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Reviews",
-  //   key: "Reviews",
-  //   icon: <Icon fontSize="small">forest</Icon>,
-  //   route: "/reviews",
-  //   component: <Reviews />,
-  //   sidenav: true,
-  // },
-  // {
-  //   type: "collapse",
-  //   key: "add-book",
-  //   icon: <Icon fontSize="small">forest</Icon>,
-  //   route: "/users/:id",
-  //   component: <EditUser />,
-  //   sidenav: false,
-  // },
+  {
+    type: "collapse",
+    name: "Add Reviews",
+    key: "Add Reviews",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/reviews/add",
+    component: <AddReview />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Edit reviews",
+    key: "Edit-reviews",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/reviews/edit/:id",
+    component: <EditReview />,
+    sidenav: false,
+  },
   // {
   //   type: "collapse",
   //   name: "Tables",
