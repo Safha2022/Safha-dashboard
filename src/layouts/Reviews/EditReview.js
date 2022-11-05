@@ -12,29 +12,33 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "context/Auth";
 
 function EditReview() {
     const handleOnChange = (e) => {
         review[e.target.name] = review[e.target.value]
     }
     const [review, setReview]= useState({
-        name:'',
-        des:'',
-        
+        userId : "",
+        bookId : "",
+        content: "" 
     })
     const navigate = useNavigate()
-    const AddReview = async (event) => {
+    const { token } = useContext(AuthContext);
+    const { id } = useParams()
+    const EditReview = async (event) => {
         event.preventDefault()     
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/reviews`, {
-            method: 'POST',
+        const edited = await fetch(`${process.env.REACT_APP_API_URL}/reviews/edit/${id}`, {
+            method: 'PUT',
+            body:  JSON.stringify(review),
             headers: {
-                "Content-Type": "application/json"
-            },
-            body:  JSON.stringify(review)
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            }
         })
-        const json = await added.json()
+        const json = await edited.json()
         console.log(json)
         alert(json.messages.join(' '))
         if (json.success) {
@@ -47,16 +51,17 @@ function EditReview() {
             <Grid container spacing={6}>
                 <Grid item xs={12}>
                     <Card>
-                        <form method="post" onSubmit={AddReview}>
+                        <form method="post" onSubmit={EditReview}>
                             <MDBox p={3}>
-                                <MDTypography variant='h5'>Add New Category</MDTypography>
+                                <MDTypography variant='h5'>Add New Review</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="name" fullWidth label="name" value={review.name} onChange={(e) => setReview({...review, name: e.target.value})}/></MDBox>
-                                    <MDBox mb={3}><TextField name="des" fullWidth label="des" value={review.des} onChange={(e) => setReview({...review, des: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="userId" fullWidth label="userId" value={review.userId} onChange={(e) => setReview({...review, userId: e.target.value})}/></MDBox>
+                                    <MDBox mb={3}><TextField name="bookId" fullWidth label="bookId" value={review.bookId} onChange={(e) => setReview({...review, bookId: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="content" fullWidth label="content" value={review.content} onChange={(e) => setReview({...review, content: e.target.value})} /></MDBox>
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">
-                                                Add A New Category
+                                                Add A New Review
                                             </MDTypography>
                                         </Button>
                                     </MDBox>

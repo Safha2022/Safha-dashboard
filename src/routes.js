@@ -231,7 +231,7 @@ const routes = [
     name: "Edit reviews",
     key: "Edit Reviews",
     icon: <Icon fontSize="small">forest</Icon>,
-    route: "/reviews/edit/:id",
+    route: "/reviews/:id",
     component: <EditReview />,
     sidenav: false,
   },
