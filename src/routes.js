@@ -155,7 +155,7 @@ const routes = [
     name: "Edit Category",
     key: "edit-Category",
     icon: <Icon fontSize="small">forest</Icon>,
-    route: "/categories/edit",
+    route: "/categories/:id",
     component: <EditCategory />,
     sidenav: false,
   },
