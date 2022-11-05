@@ -33,6 +33,25 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 function Cover() {
+  // const Signup = async () => {
+  //     const admin = await fetch(process.env.REACT_APP_API_URL+'/admins', {
+  //       method: 'POST',
+  //       body: JSON.stringify(user),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //     const json = await admin.json()
+      
+  //     if (json.success) {
+      
+  //       authCtx.login(json.token)
+  //       navigate('/admins')
+  //       window.alert('You Loged in')
+  //     } else {
+  //       setFailedToLogin(true)
+  //     }
+  // }
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -57,7 +76,7 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="Name" variant="standard" fullWidth />
+              <MDInput type="text" label="Username" variant="standard" fullWidth />
             </MDBox>
             <MDBox mb={2}>
               <MDInput type="email" label="Email" variant="standard" fullWidth />

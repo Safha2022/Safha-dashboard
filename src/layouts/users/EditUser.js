@@ -24,30 +24,31 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthContext } from "context/Auth";
 
 function EditUser() {
-    
-    const { token } = useContext(AuthContext);
-    console.log("token",token)
+    const handleOnChange = (e) => {
+        user[e.target.name] = user[e.target.value]
+    }
     const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
-        // userTypeId: ''
+        userTypeId: ''
     })
+    const { token } = useContext(AuthContext);
+    // console.log("token",token)
     const { id } = useParams()
     const navigate = useNavigate()
     const editUser = async (event) => {
         event.preventDefault()
-        let userData = new FormData(event.target)
         // console.log("userData",userData)
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/users/edit/${id}`, {
+        const edit = await fetch(`${process.env.REACT_APP_API_URL}/admins/edit/${id}`, {
             method: 'PUT',
-            body: userData,
+            body:   JSON.stringify(user),
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
             },
         })
-        const json = await added.json()
+        const json = await edit.json()
         alert(json.messages.join(' '))
         if (json.success) {
             navigate('/users')
@@ -84,20 +85,11 @@ function EditUser() {
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Edit User</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}>
-                                        <TextField value={user?.username} onChange={(e) => { setUser({ ...user, username: e.target.value }) }} name="username" fullWidth label="User Name" />
-                                    </MDBox>
-                                    <MDBox mb={3}>
-                                        <TextField value={user?.email} onChange={(e) => { setUser({ ...user, email: e.target.value }) }} name="email" fullWidth label="User Email" />
-                                    </MDBox>
-
-                                    <MDBox mb={3}>
-                                        <TextField value={user?.password} onChange={(e) => { setUser({ ...user, password: e.target.value }) }} name="password" fullWidth label="User Password" />
-                                    </MDBox>
-                                    {/* <MDBox mb={3}>
-                                        <TextField value={user?.userTypeId} onChange={(e) => { setUser({ ...user, userTypeId: e.target.value }) }} name="userTypeId" fullWidth label="UserTypeId" />
-                                    </MDBox> */}
-
+                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({...user, username: e.target.value})}/></MDBox>
+                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({...user, email: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({...user, password: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.passwordConfirmation} label="User Type Id" onChange={(e) => setUser({...user, userTypeId: e.target.value})} /></MDBox>
+                                    <MDBox>
                                     {/* <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DateTimePicker
@@ -148,6 +140,7 @@ function EditUser() {
                                                 Edit Users
                                             </MDTypography>
                                         </Button>
+                                    </MDBox>
                                     </MDBox>
                                 </MDBox>
                             </MDBox>

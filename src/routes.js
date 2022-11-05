@@ -51,6 +51,14 @@ import AddCategory from "layouts/Categories/AddCategory";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
+import { MdPeopleAlt } from "react-icons/md";
+import { RiAdminLine } from "react-icons/ri";
+import { BiCategoryAlt } from "react-icons/bi";
+import { SiBookstack } from "react-icons/si";
+
+
+
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
@@ -71,7 +79,7 @@ const routes = [
     type: "collapse",
     name: "Admins",
     key: "admins",
-    icon: <Icon fontSize="small">forest</Icon>,
+    icon: <RiAdminLine />,
     route: "/admins",
     component: <Admins />,
     sidenav: true,
@@ -89,7 +97,7 @@ const routes = [
     type: "collapse",
     name: "Users",
     key: "users",
-    icon: <Icon fontSize="small">forest</Icon>,
+    icon: <MdPeopleAlt />,
     route: "/users",
     component: <Users />,
     sidenav: true,
@@ -115,7 +123,7 @@ const routes = [
     type: "collapse",
     name: "Categories",
     key: "categories",
-    icon: <Icon fontSize="small">forest</Icon>,
+    icon: <BiCategoryAlt />,
     route: "/categories",
     component: <Categry />,
     sidenav: true,
@@ -133,7 +141,7 @@ const routes = [
     type: "collapse",
     name: "Books",
     key: "books",
-    icon: <Icon fontSize="small">forest</Icon>,
+    icon: <SiBookstack />,
     route: "/books",
     component: <Books />,
     sidenav: true,
