@@ -46,7 +46,7 @@ function EditCategory() {
 
     useEffect(() => {
         async function getCategory() {
-            const CategoryData = await fetch(`${process.env.REACT_APP_API_URL}/categories/${id}`)
+            const CategoryData = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`)
             const json = await CategoryData.json()
             setCategory(json.data)
         }
