@@ -68,6 +68,7 @@ import EditUser from "layouts/users/EditUser";
 import EditBook from "layouts/Books/EditBook";
 import EditCategory from "layouts/Categories/EditCategory";
 import EditAdmin from "layouts/Admins/EditAdmin";
+import AddAdmin from "layouts/Admins/AddAdmin";
 
 const routes = [
   {
@@ -95,6 +96,15 @@ const routes = [
     icon: <RiAdminLine />,
     route: "/admins/:id",
     component: <EditAdmin />,
+    sidenav: false,
+  },
+  {
+    type: "collapse",
+    name: "Add Admin",
+    key: "add-admin",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/admins/add",
+    component: <AddAdmin />,
     sidenav: false,
   },
   {
