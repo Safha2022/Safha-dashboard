@@ -12,28 +12,25 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState,useContext } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/Auth";
 
-function AddCategory() {
-    const{token}= useContext(AuthContext)
+function AddReview() {
     const handleOnChange = (e) => {
-        category[e.target.name] = category[e.target.value]
+        review[e.target.name] = review[e.target.value]
     }
-    const [category, setCategory]= useState({
+    const [review, setReview]= useState({
         name:'',
         des:'',
         
     })
     const navigate = useNavigate()
-    const addCategory = async (event) => {
+    const AddReview = async (event) => {
         event.preventDefault()
         console.log(category)        
         const added = await fetch(`${process.env.REACT_APP_API_URL}/categories`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`, 
                 "Content-Type": "application/json"
             },
             body:  JSON.stringify(category)
@@ -51,7 +48,7 @@ function AddCategory() {
             <Grid container spacing={6}>
                 <Grid item xs={12}>
                     <Card>
-                        <form method="post" onSubmit={addCategory}>
+                        <form method="post" onSubmit={AddReview}>
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Add New Category</MDTypography>
                                 <MDBox pt={4} pb={2}>
@@ -74,4 +71,4 @@ function AddCategory() {
     )
 }
 
-export default AddCategory
+export default AddReview

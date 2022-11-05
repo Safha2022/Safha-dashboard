@@ -31,7 +31,7 @@ function AddBook() {
 
     })
     const navigate = useNavigate()
-    const addCategory = async (event) => {
+    const AddBook = async (event) => {
         event.preventDefault()
         console.log(Book)
         const added = await fetch(`${process.env.REACT_APP_API_URL}/books`, {
