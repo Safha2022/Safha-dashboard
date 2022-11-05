@@ -55,6 +55,8 @@ import { MdPeopleAlt } from "react-icons/md";
 import { RiAdminLine } from "react-icons/ri";
 import { BiCategoryAlt } from "react-icons/bi";
 import { SiBookstack } from "react-icons/si";
+import { BiCommentDetail } from "react-icons/bi";
+import { MdRateReview } from "react-icons/md";
 
 
 
@@ -143,7 +145,7 @@ const routes = [
     name: "Edit Category",
     key: "edit-Category",
     icon: <Icon fontSize="small">forest</Icon>,
-    route: "/categories/:id",
+    route: "/categories/edit",
     component: <EditCategory />,
     sidenav: false,
   },
@@ -178,7 +180,7 @@ const routes = [
     type: "collapse",
     name: "Reviews",
     key: "Reviews",
-    icon: <RiQuillPenLine />,
+    icon: <MdRateReview />,
     route: "/review",
     component: <Review />,
     sidenav: true,
@@ -187,7 +189,7 @@ const routes = [
     type: "collapse",
     name: "Comments",
     key: "Comments",
-    icon: <RiQuillPenLine />,
+    icon: <BiCommentDetail />,
     route: "/comment",
     component: <Comment />,
     sidenav: true,
@@ -263,15 +265,15 @@ const routes = [
     component: <SignIn />,
     sidenav: true,
   },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
-    sidenav: true,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Sign Up",
+  //   key: "sign-up",
+  //   icon: <Icon fontSize="small">assignment</Icon>,
+  //   route: "/authentication/sign-up",
+  //   component: <SignUp />,
+  //   sidenav: true,
+  // },
 ];
 
 export default routes;
