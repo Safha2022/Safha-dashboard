@@ -12,10 +12,12 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState } from "react";
+import { useRef, useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/Auth";
 
 function AddCategory() {
+    const{token}= useContext(AuthContext)
     const handleOnChange = (e) => {
         category[e.target.name] = category[e.target.value]
     }
@@ -31,6 +33,7 @@ function AddCategory() {
         const added = await fetch(`${process.env.REACT_APP_API_URL}/categories`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`, 
                 "Content-Type": "application/json"
             },
             body:  JSON.stringify(category)
