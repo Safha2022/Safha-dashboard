@@ -33,7 +33,11 @@ function Admin() {
     const deleteAdmin = async (id) => {
         if (window.confirm('Are you sure you want to delete this admin?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/admins/` + id, {
-                method: 'PUT'
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`,
+                }
             })
             const result = await deleted.json()
             const remainedRows = rows.filter((admin) => {

@@ -194,7 +194,7 @@ const routes = [
     type: "collapse",
     key: "add-book",
     icon: <Icon fontSize="small">forest</Icon>,
-    route: "/books/:id",
+    route: "/books/edit/:id",
     component: <EditBook />,
     sidenav: false,
   },
