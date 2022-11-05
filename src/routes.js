@@ -44,6 +44,7 @@ import Books from "layouts/Books";
 import Admins from "layouts/Admins";
 import AddUser from "layouts/users/AddUser";
 import Review from "layouts/Reviews";
+import Comment from "layouts/Comments";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -132,6 +133,15 @@ const routes = [
     icon: <RiQuillPenLine />,
     route: "/review",
     component: <Review />,
+    sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Comments",
+    key: "Comments",
+    icon: <RiQuillPenLine />,
+    route: "/comment",
+    component: <Comment />,
     sidenav: true,
   },
   // {
