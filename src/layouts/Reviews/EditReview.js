@@ -15,7 +15,7 @@ import Icon from "@mui/material/Icon";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddReview() {
+function EditReview() {
     const handleOnChange = (e) => {
         review[e.target.name] = review[e.target.value]
     }
@@ -70,4 +70,4 @@ function AddReview() {
     )
 }
 
-export default AddReview
+export default EditReview
