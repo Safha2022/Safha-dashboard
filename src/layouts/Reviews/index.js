@@ -56,7 +56,7 @@ function Review() {
                     <MDButton variant="text" color="error" onClick={() => { deleteReview(review.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/reviews/${review.id}`}>
+                    <Link to={`/reviews/edit/${review.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
