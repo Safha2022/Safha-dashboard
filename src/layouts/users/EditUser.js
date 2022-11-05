@@ -14,30 +14,38 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { AuthContext } from "context/Auth";
 
 function EditUser() {
+    
+    const { token } = useContext(AuthContext);
+    console.log("token",token)
     const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
-        // Photos: []
+        // userTypeId: ''
     })
     const { id } = useParams()
     const navigate = useNavigate()
     const editUser = async (event) => {
         event.preventDefault()
         let userData = new FormData(event.target)
-        const added = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
+        // console.log("userData",userData)
+        const added = await fetch(`${process.env.REACT_APP_API_URL}/users/edit/${id}`, {
             method: 'PUT',
-            body: userData
+            body: userData,
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            },
         })
         const json = await added.json()
         alert(json.messages.join(' '))
@@ -58,14 +66,14 @@ function EditUser() {
     //       alert(result.messages.join(' '))
     //     }
     //   }
-    useEffect(() => {
-        async function getUser() {
-            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`)
-            const json = await UserData.json()
-            setUser(json.data)
-        }
-        getUser();
-    }, [])
+    // useEffect(() => {
+    //     async function getUser() {
+    //         const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}`)
+    //         const json = await UserData.json()
+    //         setUser(json.data)
+    //     }
+    //     getUser();
+    // }, [])
     return (
         <DashboardLayout>
             <DashboardNavbar />
@@ -77,12 +85,18 @@ function EditUser() {
                                 <MDTypography variant='h5'>Edit User</MDTypography>
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}>
-                                        <TextField value={user?.username} onChange={(e) => { setUser({ ...user, username: e.target.value }) }} name="username" fullWidth label="User Name" /></MDBox>
+                                        <TextField value={user?.username} onChange={(e) => { setUser({ ...user, username: e.target.value }) }} name="username" fullWidth label="User Name" />
+                                    </MDBox>
                                     <MDBox mb={3}>
-                                        <TextField value={user?.email} onChange={(e) => { setUser({ ...user, email: e.target.value }) }} name="email" fullWidth label="User Email" /></MDBox>
+                                        <TextField value={user?.email} onChange={(e) => { setUser({ ...user, email: e.target.value }) }} name="email" fullWidth label="User Email" />
+                                    </MDBox>
 
                                     <MDBox mb={3}>
-                                        <TextField value={user?.password} onChange={(e) => { setUser({ ...user, password: e.target.value }) }} name="password" fullWidth label="User Password" /></MDBox>
+                                        <TextField value={user?.password} onChange={(e) => { setUser({ ...user, password: e.target.value }) }} name="password" fullWidth label="User Password" />
+                                    </MDBox>
+                                    {/* <MDBox mb={3}>
+                                        <TextField value={user?.userTypeId} onChange={(e) => { setUser({ ...user, userTypeId: e.target.value }) }} name="userTypeId" fullWidth label="UserTypeId" />
+                                    </MDBox> */}
 
                                     {/* <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
