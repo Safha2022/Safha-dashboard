@@ -15,6 +15,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "context/Auth";
+import { Avatar } from "@mui/material";
 
 function Book() {
     const columns = [
@@ -59,7 +60,14 @@ function Book() {
                 pagesCount: <>{book.pagesCount}</>,
                 categoryId: <>{book.categoryId}</>,
                 des: <>{book.des}</>,
-                cover: <>{book.cover}</>,
+                cover: <>
+                            <Avatar
+                            alt=""
+                            variant="square"
+                            src={book.cover}
+                            sx={{ width: 150, height: 150 }}
+                            /> 
+                        </>,
                 lang: <>{book.lang}</>,
                 options: <>
                     <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
