@@ -34,6 +34,7 @@ import Dashboard from "layouts/dashboard";
 // import Tables from "layouts/tables";
 // import Billing from "layouts/billing";
 import Authors from "layouts/authors"
+
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -107,6 +108,15 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/admins/add",
     component: <AddAdmin />,
+    sidenav: false,
+  },
+  {
+    type: "collapse",
+    name: "Author",
+    key: "author",
+    icon: <RiQuillPenLine />,
+    route: "/author",
+    component: <Authors />,
     sidenav: false,
   },
   {
@@ -224,7 +234,7 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/reviews/add",
     component: <AddReview />,
-    sidenav: true,
+    sidenav: false,
   },
   {
     type: "collapse",
