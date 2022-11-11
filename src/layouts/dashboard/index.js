@@ -35,6 +35,9 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import { useEffect, useState } from "react";
+import { RiQuillPenLine } from "react-icons/ri";
+import { SiBookstack } from "react-icons/si";
+import { MdPeopleAlt, MdRateReview } from "react-icons/md";
 
 function Dashboard () {
   const { sales, tasks } = reportsLineChartData;
@@ -59,13 +62,13 @@ function Dashboard () {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="weekend"
+                icon= {<MdPeopleAlt />}
                 title="Users"
                 count={countData.usersCount}
                 percentage={{
                   color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
+                  // amount: "+55%",
+                  // label: "than lask week",
                 }}
               />
             </MDBox>
@@ -73,13 +76,13 @@ function Dashboard () {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="leaderboard"
+                icon= {<SiBookstack />}
                 title="Books"
                 count= {countData.booksCount}
                 percentage={{
                   color: "success",
-                  amount: "+3%",
-                  label: "than last month",
+                  // amount: "+3%",
+                  // label: "than last month",
                 }}
               />
             </MDBox>
@@ -88,32 +91,32 @@ function Dashboard () {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="store"
+                icon= {<MdRateReview />}
                 title="Reviews"
                 count= {countData.reviewsCount}
                 percentage={{
                   color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
+                  // amount: "+1%",
+                  // label: "than yesterday",
                 }}
               />
             </MDBox>
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="primary"
-                icon="person_add"
-                title="Followers"
-                count="+91"
+                icon= {<RiQuillPenLine />}
+                title="Authors"
+                count= {countData.authorsCount}
                 percentage={{
                   color: "success",
-                  amount: "",
-                  label: "Just updated",
+                  // amount: "",
+                  // label: "Just updated",
                 }}
               />
             </MDBox>
-          </Grid> */}
+          </Grid>
         </Grid>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
