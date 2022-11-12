@@ -34,7 +34,7 @@ function Author() {
     const deleteAuthor = async (id) => {
         if (window.confirm('Are you sure you want to delete this author?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/authors/` + id, {
-                method: 'PUT',
+                method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,

@@ -31,7 +31,7 @@ function Comment() {
     const deletecomment = async (id) => {
         if (window.confirm('Are you sure you want to delete this comment?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/comments/` + id, {
-                method: 'PUT',
+                method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,

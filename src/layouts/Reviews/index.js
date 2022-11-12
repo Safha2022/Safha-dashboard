@@ -30,7 +30,7 @@ function Review() {
     const deleteReview = async (id) => {
         if (window.confirm('Are you sure you want to delete this review?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/reviews/` + id, {
-                method: 'PUT',
+                method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,
