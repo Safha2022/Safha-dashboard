@@ -21,7 +21,7 @@ function Book() {
     const columns = [
         { Header: "id", accessor: "id", align: "left" },
         { Header: "name", accessor: "name", align: "left" },
-        { Header: "userId", accessor: "userId", align: "center" },
+        { Header: "author", accessor: "author", align: "center" },
         { Header: "pagesCount", accessor: "pagesCount", align: "center" },
         { Header: "categoryId", accessor: "categoryId", align: "center" },
         { Header: "des", accessor: "des", align: "center" },
@@ -36,7 +36,7 @@ function Book() {
     const deleteBook = async (id) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/` + id, {
-                method: 'PUT',
+                method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,
@@ -52,20 +52,37 @@ function Book() {
 
     }
     useEffect(() => {
+        // const getCategoryName = async(id) => {
+        //     const category = await fetch(`${process.env.REACT_APP_API_URL}/categories/${id}`, {
+        //         method: 'GET',
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`,
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify()
+        //     })
+        //     const json = await category.json()
+        //     console.log("json data name",json.data.name)
+        //     return json.data.name
+        // }
+        // console.log("getfunction",getCategoryName(1))
         const jsxRows = rows?.map((book) => {
+            // const categoryName = getCategoryName(book.categoryId)
+            // console.log("categoryName", categoryName)
+            console.log("book categories",book.Categories)
             return {
                 id: <>{book.id}</>,
                 name: <>{book.name}</>,
-                userId: <>{book.userId}</>,
+                author: <>{book.author}</>,
                 pagesCount: <>{book.pagesCount}</>,
-                categoryId: <>{book.categoryId}</>,
+                categoryId: <>{book?.Category?.name}</>,
                 des: <>{book.des}</>,
                 cover: <>
                             <Avatar
                             alt=""
                             variant="square"
                             src={book.cover}
-                            sx={{ width: 150, height: 150 }}
+                            sx={{ width: 70, height: 70 }}
                             /> 
                         </>,
                 lang: <>{book.lang}</>,
