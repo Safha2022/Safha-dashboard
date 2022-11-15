@@ -62,13 +62,23 @@ function AddBook() {
         }
     }
     const [categories, setCategories] = useState()
+    const [publishers, setPublishers] = useState()
     useEffect(() => {
         async function getCategories() {
             const data = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`);
             const categoriesData = await data.json()
             setCategories(categoriesData.data)
         }
+        console.log("categoriesData",categories)
         getCategories();
+
+        async function getPublishers() {
+            const data = await fetch(`${process.env.REACT_APP_API_URL}/publishers/all`);
+            const publishersData = await data.json()
+            console.log("publishersData",publishersData)
+            setPublishers(publishersData.data)
+        }
+        getPublishers();
     }, []);
     return (
         <DashboardLayout>
@@ -82,7 +92,7 @@ function AddBook() {
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}><TextField name="name" fullWidth label="Book name" /></MDBox>
                                     <MDBox mb={3}><TextField name="pagesCount" fullWidth label="Pages Number" /></MDBox>
-                                    <MDBox mb={3}><TextField name="categoryId" fullWidth label="CategoryId"/></MDBox>
+                                    {/* <MDBox mb={3}><TextField name="categoryId" fullWidth label="CategoryId"/></MDBox> */}
                                     <MDBox mb={3}>
                                         <PopupState variant="popover" popupId="demo-popup-menu">
                                         {(popupState) => (
@@ -92,9 +102,9 @@ function AddBook() {
                                             </Button>
                                             <Menu {...bindMenu(popupState)}>
                                                 {
-                                                    categories?.map((category) => {
+                                                    categories?.map((category, i) => {
                                                         return(
-                                                            <MenuItem value='1' onClick={popupState.close}>{category.name}</MenuItem>
+                                                            <MenuItem value={`${i}`} onClick={popupState.close}>{category.name}</MenuItem>
                                                         )
                                                         })
                                                 }
@@ -123,7 +133,27 @@ function AddBook() {
                                             />
                                         </LocalizationProvider>
                                     </MDBox>
-                                    <MDBox mb={3}><TextField name="publisherId" fullWidth label="publisherId"  /></MDBox>
+                                    {/* <MDBox mb={3}><TextField name="publisherId" fullWidth label="publisherId"  /></MDBox> */}
+                                    <MDBox mb={3}>
+                                        <PopupState variant="popover" popupId="demo-popup-menu">
+                                        {(popupState) => (
+                                            <React.Fragment>
+                                            <Button variant="contained" color='primary' {...bindTrigger(popupState)}>
+                                                Publisher
+                                            </Button>
+                                            <Menu {...bindMenu(popupState)}>
+                                                {
+                                                    publishers?.map((publisher, i) => {
+                                                        return(
+                                                            <MenuItem value={`${i}`} onClick={popupState.close}>{publisher.name}</MenuItem>
+                                                        )
+                                                        })
+                                                }
+                                            </Menu>
+                                            </React.Fragment>
+                                        )}
+                                        </PopupState>
+                                    </MDBox>
                                     <MDBox mb={3}>
                                         <FormControlLabel
                                             control={
