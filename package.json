@@ -30,6 +30,7 @@
     "chart.js": "3.4.1",
     "chroma-js": "2.4.2",
     "dayjs": "^1.11.5",
+    "material-ui-popup-state": "^4.1.0",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-chartjs-2": "3.0.4",

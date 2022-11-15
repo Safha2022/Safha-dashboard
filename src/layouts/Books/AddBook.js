@@ -6,14 +6,18 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import { Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, MenuItem, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Auth";
-import { DatePicker, DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 function AddBook() {
 
@@ -57,6 +61,15 @@ function AddBook() {
             navigate('/books')
         }
     }
+    const [categories, setCategories] = useState()
+    useEffect(() => {
+        async function getCategories() {
+            const data = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`);
+            const categoriesData = await data.json()
+            setCategories(categoriesData.data)
+        }
+        getCategories();
+    }, []);
     return (
         <DashboardLayout>
             <DashboardNavbar />
@@ -70,15 +83,26 @@ function AddBook() {
                                     <MDBox mb={3}><TextField name="name" fullWidth label="Book name" /></MDBox>
                                     <MDBox mb={3}><TextField name="pagesCount" fullWidth label="Pages Number" /></MDBox>
                                     <MDBox mb={3}><TextField name="categoryId" fullWidth label="CategoryId"/></MDBox>
-                                    {/* <DropDownMenu 
-                                        value={this.state.selection} 
-                                        onChange={this.handleChange}   
-                                        >
-                                        <MenuItem value={1} primaryText="English"  />
-                                        <MenuItem value={2} primaryText="Spanish" />
-                                        <MenuItem value={3} primaryText="French" />
-
-                                    </DropDownMenu> */}
+                                    <MDBox mb={3}>
+                                        <PopupState variant="popover" popupId="demo-popup-menu">
+                                        {(popupState) => (
+                                            <React.Fragment>
+                                            <Button variant="contained" color='primary' {...bindTrigger(popupState)}>
+                                                Category
+                                            </Button>
+                                            <Menu {...bindMenu(popupState)}>
+                                                {
+                                                    categories?.map((category) => {
+                                                        return(
+                                                            <MenuItem value='1' onClick={popupState.close}>{category.name}</MenuItem>
+                                                        )
+                                                        })
+                                                }
+                                            </Menu>
+                                            </React.Fragment>
+                                        )}
+                                        </PopupState>
+                                    </MDBox>
                                     <MDBox mb={3}><TextField name="des" fullWidth label="Description" /></MDBox>
                                     <MDBox mb={3}><TextField name="author" fullWidth label="Author"/></MDBox>
                                     <MDBox mb={3}><TextField name="ISBN" fullWidth label="ISBN" /></MDBox>
