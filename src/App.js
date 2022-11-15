@@ -13,10 +13,10 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -51,6 +51,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import { AuthContext } from "context/Auth";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -144,7 +145,14 @@ export default function App() {
       </Icon>
     </MDBox>
   );
+  const {loggedIn} = useContext(AuthContext)
+  console.log("LogedIn ",loggedIn)
+  // return signedIn?(< Navigate to="/authentication/sign-in" />): direction === "rtl" ? (
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!loggedIn) navigate('/authentication/sign-in')
 
+  }, [])
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
