@@ -15,7 +15,7 @@ import Icon from "@mui/material/Icon";
 import { useRef, useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/Auth";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker,DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function EditBook() {
@@ -87,17 +87,16 @@ function EditBook() {
                                     <MDBox mb={3}><TextField value={book?.lang} onChange={(e) => { setBook({ ...book, lang: e.target.value }) }} name="lang" fullWidth label="lang" /></MDBox>
                                     <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <DateTimePicker
+                                            <DatePicker
                                                 
                                                 renderInput={(props) => <TextField value={book?.publish} onChange={(e) => { setBook({ ...book, publish: e.target.value }) }} name='publish' fullWidth {...props} />}
                                                 label="Publish Date"
                                                 // value={publishDate}
                                                 value={publish}
-                                                // onChange={(e) => setBook({ ...Book, publish: e.target.value })}
-                                                inputFormat='YYYY-MM-DD HH:mm:ss'
-                                                mask='____-__-__ __:__:__'
+                                                inputFormat='YYYY-MM-DD'
+                                                mask='____-__-__'
                                                 onChange={(newValue) => {
-                                                    setPublish(dayjs(newValue).format("YYYY-MM-DD HH:mm:ss"))
+                                                    setPublish(dayjs(newValue).format("YYYY-MM-DD"))
                                                 }}
                                             />
                                         </LocalizationProvider>
