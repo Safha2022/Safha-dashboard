@@ -24,7 +24,6 @@ function AddCategory() {
     const [category, setCategory]= useState({
         name:'',
         des:'',
-        
     })
     const navigate = useNavigate()
     const addCategory = async (event) => {

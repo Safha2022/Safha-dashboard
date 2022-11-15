@@ -1,6 +1,5 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout"
 import DashboardNavbar from "examples/Navbars/DashboardNavbar"
-
 // @mui material components
 import dayjs from "dayjs";
 import Grid from "@mui/material/Grid";
@@ -8,14 +7,12 @@ import Card from "@mui/material/Card";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
-
-
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
 import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Auth";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DatePicker, DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function AddBook() {
@@ -70,39 +67,39 @@ function AddBook() {
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Add New Book</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="name" fullWidth label="name" /></MDBox>
-                                    {/* <MDBox mb={3}><TextField name="userId" fullWidth label="userId" value={Book.userId} onChange={(e) => setBook({ ...Book, userId: e.target.value })} /></MDBox> */}
-                                    <MDBox mb={3}><TextField name="pagesCount" fullWidth label="Pages" /></MDBox>
-                                    <MDBox mb={3}><TextField name="categoryId" fullWidth label="categoryId"/></MDBox>
-                                    <MDBox mb={3}><TextField name="des" fullWidth label="des" /></MDBox>
+                                    <MDBox mb={3}><TextField name="name" fullWidth label="Book name" /></MDBox>
+                                    <MDBox mb={3}><TextField name="pagesCount" fullWidth label="Pages Number" /></MDBox>
+                                    <MDBox mb={3}><TextField name="categoryId" fullWidth label="CategoryId"/></MDBox>
+                                    {/* <DropDownMenu 
+                                        value={this.state.selection} 
+                                        onChange={this.handleChange}   
+                                        >
+                                        <MenuItem value={1} primaryText="English"  />
+                                        <MenuItem value={2} primaryText="Spanish" />
+                                        <MenuItem value={3} primaryText="French" />
+
+                                    </DropDownMenu> */}
+                                    <MDBox mb={3}><TextField name="des" fullWidth label="Description" /></MDBox>
                                     <MDBox mb={3}><TextField name="author" fullWidth label="Author"/></MDBox>
                                     <MDBox mb={3}><TextField name="ISBN" fullWidth label="ISBN" /></MDBox>
-                                    {/* <MDBox mb={3}><TextField name="cover" fullWidth label="cover" value={Book.cover} onChange={(e) => setBook({ ...category, cover: e.target.value })} /></MDBox> */}
-                                    {/* <MDBox mb={3}><TextField name="publish" fullWidth label="publish" value={Book.publish} onChange={(e) => setBook({ ...Book, publish: e.target.value })} /></MDBox> */}
-                                    <MDBox mb={3}><TextField name="lang" fullWidth label="lang" /></MDBox>
-                                    {/* <MDBox mb={3}><TextField name="publish" fullWidth label="publish" value={Book.publish} onChange={(e) => setBook({ ...Book, publish: e.target.value })} /></MDBox> */}
+                                    <MDBox mb={3}><TextField name="lang" fullWidth label="Language" /></MDBox>
                                     <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <DateTimePicker
-                                                
+                                            <DatePicker
                                                 renderInput={(props) => <TextField name='publish' fullWidth {...props} />}
                                                 label="Publish Date"
                                                 // value={publishDate}
                                                 value={publish}
                                                 // onChange={(e) => setBook({ ...Book, publish: e.target.value })}
-                                                inputFormat='YYYY-MM-DD HH:mm:ss'
-                                                mask='____-__-__ __:__:__'
+                                                inputFormat='YYYY-MM-DD'
+                                                mask='____-__-__'
                                                 onChange={(newValue) => {
-                                                    setPublish(dayjs(newValue).format("YYYY-MM-DD HH:mm:ss"))
+                                                    setPublish(dayjs(newValue).format("YYYY-MM-DD"))
                                                 }}
-                                                // onChange={(e) => setBook({ ...Book, publish: dayjs(e).format("YYYY-MM-DD HH:mm:ss") })}
                                             />
                                         </LocalizationProvider>
                                     </MDBox>
                                     <MDBox mb={3}><TextField name="publisherId" fullWidth label="publisherId"  /></MDBox>
-                                    {/* <MDBox mb={3}><TextField name="paper" fullWidth label="Paper"  /></MDBox> */}
-                                    {/* <MDBox mb={3}><TextField name="kindle" fullWidth label="Kindle" /></MDBox> */}
-                                    {/* <MDBox mb={3}><Checkbox  name="kindle" /></MDBox> */}
                                     <MDBox mb={3}>
                                         <FormControlLabel
                                             control={

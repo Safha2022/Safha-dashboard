@@ -78,17 +78,16 @@ function EditBook() {
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Edit A Book</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField value={book?.name} onChange={(e) => { setBook({ ...book, name: e.target.value }) }} name="name" fullWidth label="name" /></MDBox>
-                                    <MDBox mb={3}><TextField value={book?.pagesCount} onChange={(e) => { setBook({ ...book, pagesCount: e.target.value }) }} name="pagesCount" fullWidth label="Pages" /></MDBox>
+                                    <MDBox mb={3}><TextField value={book?.name} onChange={(e) => { setBook({ ...book, name: e.target.value }) }} name="name" fullWidth label="Book name" /></MDBox>
+                                    <MDBox mb={3}><TextField value={book?.pagesCount} onChange={(e) => { setBook({ ...book, pagesCount: e.target.value }) }} name="pagesCount" fullWidth label="Pages Number" /></MDBox>
                                     <MDBox mb={3}><TextField value={book?.categoryId} onChange={(e) => { setBook({ ...book, categoryId: e.target.value }) }} name="categoryId" fullWidth label="categoryId"/></MDBox>
-                                    <MDBox mb={3}><TextField value={book?.des} onChange={(e) => { setBook({ ...book, des: e.target.value }) }} name="des" fullWidth label="des" /></MDBox>
+                                    <MDBox mb={3}><TextField value={book?.des} onChange={(e) => { setBook({ ...book, des: e.target.value }) }} name="des" fullWidth label="Description" /></MDBox>
                                     <MDBox mb={3}><TextField value={book?.author} onChange={(e) => { setBook({ ...book, author: e.target.value }) }} name="author" fullWidth label="Author"/></MDBox>
                                     <MDBox mb={3}><TextField value={book?.ISBN} onChange={(e) => { setBook({ ...book, ISBN: e.target.value }) }} name="ISBN" fullWidth label="ISBN" /></MDBox>
-                                    <MDBox mb={3}><TextField value={book?.lang} onChange={(e) => { setBook({ ...book, lang: e.target.value }) }} name="lang" fullWidth label="lang" /></MDBox>
+                                    <MDBox mb={3}><TextField value={book?.lang} onChange={(e) => { setBook({ ...book, lang: e.target.value }) }} name="lang" fullWidth label="Language" /></MDBox>
                                     <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                
                                                 renderInput={(props) => <TextField value={book?.publish} onChange={(e) => { setBook({ ...book, publish: e.target.value }) }} name='publish' fullWidth {...props} />}
                                                 label="Publish Date"
                                                 // value={publishDate}
