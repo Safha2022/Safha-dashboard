@@ -22,31 +22,14 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 function AddBook() {
 
     const { token } = useContext(AuthContext)
-    const handleOnChange = (e) => {
-        Book[e.target.name] = Book[e.target.value]
-    }
     const [publish, setPublish] = useState('')
-    const [Book, setBook] = useState({
-        name: '',
-        pagesCount: '',
-        categoryId: '',
-        des: '',
-        publish: '',
-        publisherId:'',
-        lang: '',
-        ISBN: '',
-        author: '',
-        kinle: '',
-        paper: '',
-        cover: '',
-
-    })
     const navigate = useNavigate()
     const AddBook = async (event) => {
         let BookData = new FormData(event.target)
         event.preventDefault()
         console.log("BookData", BookData)
-        console.log("event.target", event.target)
+
+        // console.log("event.target", event.target)
         const added = await fetch(`${process.env.REACT_APP_API_URL}/books`, {
             method: 'POST',
             headers: {
@@ -69,13 +52,13 @@ function AddBook() {
             const categoriesData = await data.json()
             setCategories(categoriesData.data)
         }
-        console.log("categoriesData",categories)
+        // console.log("categoriesData",categories)
         getCategories();
 
         async function getPublishers() {
             const data = await fetch(`${process.env.REACT_APP_API_URL}/publishers/all`);
             const publishersData = await data.json()
-            console.log("publishersData",publishersData)
+            // console.log("publishersData",publishersData)
             setPublishers(publishersData.data)
         }
         getPublishers();
@@ -104,7 +87,7 @@ function AddBook() {
                                                 {
                                                     categories?.map((category, i) => {
                                                         return(
-                                                            <MenuItem value={`${i}`} onClick={popupState.close}>{category.name}</MenuItem>
+                                                            <MenuItem name='categoryId' value={category?.id} onClick={popupState.close}>{category?.name}</MenuItem>
                                                         )
                                                         })
                                                 }
@@ -144,8 +127,9 @@ function AddBook() {
                                             <Menu {...bindMenu(popupState)}>
                                                 {
                                                     publishers?.map((publisher, i) => {
+                                                        // console.log("publisher?.id",publisher?.id)
                                                         return(
-                                                            <MenuItem value={`${i}`} onClick={popupState.close}>{publisher.name}</MenuItem>
+                                                            <MenuItem name='publisherId' value={publisher?.id} onClick={popupState.close}>{publisher?.name}</MenuItem>
                                                         )
                                                         })
                                                 }
