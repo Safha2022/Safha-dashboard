@@ -32,7 +32,7 @@ function Book() {
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
     const{token}= useContext(AuthContext)
-    console.log("Token is ",token)
+    // console.log("Token is ",token)
     const deleteBook = async (id) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
             const deleted = await fetch(`${process.env.REACT_APP_API_URL}/books/` + id, {
@@ -52,51 +52,37 @@ function Book() {
 
     }
     useEffect(() => {
-        // const getCategoryName = async(id) => {
-        //     const category = await fetch(`${process.env.REACT_APP_API_URL}/categories/${id}`, {
-        //         method: 'GET',
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`,
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify()
-        //     })
-        //     const json = await category.json()
-        //     console.log("json data name",json.data.name)
-        //     return json.data.name
-        // }
-        // console.log("getfunction",getCategoryName(1))
         const jsxRows = rows?.map((book) => {
-            // const categoryName = getCategoryName(book.categoryId)
-            // console.log("categoryName", categoryName)
-            console.log("book categories",book.Categories)
-            return {
-                id: <>{book.id}</>,
-                name: <>{book.name}</>,
-                author: <>{book.author}</>,
-                pagesCount: <>{book.pagesCount}</>,
-                categoryId: <>{book?.Category?.name}</>,
-                des: <>{book.des}</>,
-                cover: <>
-                            <Avatar
-                            alt=""
-                            variant="square"
-                            src={book.cover}
-                            sx={{ width: 70, height: 70 }}
-                            /> 
-                        </>,
-                lang: <>{book.lang}</>,
-                options: <>
-                    <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
-                        <Icon>delete</Icon>&nbsp;delete
+        // const categoryName = getCategoryName(book.categoryId)
+        // console.log("categoryName", categoryName)
+        // console.log("book categories",book.Categories)
+        return {
+            id: <>{book.id}</>,
+            name: <>{book.name}</>,
+            author: <>{book.author}</>,
+            pagesCount: <>{book.pagesCount}</>,
+            categoryId: <>{book?.Category?.name}</>,
+            des: <>{book.des}</>,
+            cover: <>
+                        <Avatar
+                        alt=""
+                        variant="square"
+                        src={book.cover}
+                        sx={{ width: 70, height: 70 }}
+                        /> 
+                    </>,
+            lang: <>{book.lang}</>,
+            options: <>
+                <MDButton variant="text" color="error" onClick={() => { deleteBook(book.id) }}>
+                    <Icon>delete</Icon>&nbsp;delete
+                </MDButton>
+                <Link to={`/books/edit/${book.id}`}>
+                    <MDButton variant="text" color="dark">
+                        <Icon>edit</Icon>&nbsp;edit
                     </MDButton>
-                    <Link to={`/books/edit/${book.id}`}>
-                        <MDButton variant="text" color="dark">
-                            <Icon>edit</Icon>&nbsp;edit
-                        </MDButton>
-                    </Link>
-                </>
-            };
+                </Link>
+            </>
+        };
         });
         setTableRows(jsxRows);
     }, [rows])

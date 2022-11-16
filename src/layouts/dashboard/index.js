@@ -46,12 +46,12 @@ function Dashboard () {
     async function countFun () {
       const data = await fetch(`${process.env.REACT_APP_API_URL}/counts`);
       const json = await data.json()
-      console.log("json",json)
+      // console.log("json",json)
       setCountData(json.data)
     }
     countFun("countData",countData)
   }, []);
-  console.log()
+  // console.log()
 
   return (
     <DashboardLayout>

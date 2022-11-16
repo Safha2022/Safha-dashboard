@@ -38,7 +38,7 @@ function AddBook() {
             body: BookData
         })
         const json = await added.json()
-        console.log(json)
+        // console.log(json)
         alert(json.messages.join(' '))
         if (json.success) {
             navigate('/books')
