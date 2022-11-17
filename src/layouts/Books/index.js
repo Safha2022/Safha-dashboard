@@ -24,7 +24,7 @@ function Book() {
         { Header: "author", accessor: "author", align: "center" },
         { Header: "pagesCount", accessor: "pagesCount", align: "center" },
         { Header: "categoryId", accessor: "categoryId", align: "center" },
-        { Header: "des", accessor: "des", align: "center" },
+        // { Header: "des", accessor: "des", align: "center" },
         { Header: "cover", accessor: "cover", align: "center" },
         { Header: "lang", accessor: "lang", align: "center" },
         { Header: "options", accessor: "options", align: "center" },
@@ -62,7 +62,7 @@ function Book() {
             author: <>{book.author}</>,
             pagesCount: <>{book.pagesCount}</>,
             categoryId: <>{book?.Category?.name}</>,
-            des: <>{book.des}</>,
+            // des: <>{book.des}</>,
             cover: <>
                         <Avatar
                         alt=""
