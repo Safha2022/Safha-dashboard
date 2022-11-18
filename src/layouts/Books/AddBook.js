@@ -19,6 +19,11 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+
 function AddBook() {
 
     const { token } = useContext(AuthContext)
@@ -76,7 +81,7 @@ function AddBook() {
                                     <MDBox mb={3}><TextField name="name" fullWidth label="Book name" /></MDBox>
                                     <MDBox mb={3}><TextField name="pagesCount" fullWidth label="Pages Number" /></MDBox>
                                     {/* <MDBox mb={3}><TextField name="categoryId" fullWidth label="CategoryId"/></MDBox> */}
-                                    <MDBox mb={3}>
+                                    {/* <MDBox mb={3}>
                                         <PopupState variant="popover" popupId="demo-popup-menu">
                                         {(popupState) => (
                                             <React.Fragment>
@@ -87,7 +92,7 @@ function AddBook() {
                                                 {
                                                     categories?.map((category, i) => {
                                                         return(
-                                                            <MenuItem name='categoryId' value={category?.id} onClick={popupState.close}>{category?.name}</MenuItem>
+                                                            <MenuItem name='categoryId' key={i} value={category?.id} onClick={popupState.close}>{category?.name}</MenuItem>
                                                         )
                                                         })
                                                 }
@@ -95,6 +100,30 @@ function AddBook() {
                                             </React.Fragment>
                                         )}
                                         </PopupState>
+                                    </MDBox> */}
+                                    <MDBox mb={3}>
+                                        <Box sx={{ minWidth: 120 }}>
+                                            <FormControl fullWidth>
+                                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                                Category
+                                                </InputLabel>
+                                                <NativeSelect
+                                                defaultValue={categories[0]?.id}
+                                                inputProps={{
+                                                    name: 'categoryId',
+                                                    id: 'uncontrolled-native',
+                                                }}
+                                                >
+                                                    {
+                                                    categories?.map((category, i) => {
+                                                        return(
+                                                            <option key={i} value={category?.id}>{category?.name}</option>
+                                                        )
+                                                        })
+                                                    }
+                                                </NativeSelect>
+                                            </FormControl>
+                                        </Box>
                                     </MDBox>
                                     <MDBox mb={3}><TextField name="des" fullWidth label="Description" /></MDBox>
                                     <MDBox mb={3}><TextField name="author" fullWidth label="Author"/></MDBox>
@@ -117,7 +146,7 @@ function AddBook() {
                                         </LocalizationProvider>
                                     </MDBox>
                                     {/* <MDBox mb={3}><TextField name="publisherId" fullWidth label="publisherId"  /></MDBox> */}
-                                    <MDBox mb={3}>
+                                    {/* <MDBox mb={3}>
                                         <PopupState variant="popover" popupId="demo-popup-menu">
                                         {(popupState) => (
                                             <React.Fragment>
@@ -129,7 +158,7 @@ function AddBook() {
                                                     publishers?.map((publisher, i) => {
                                                         // console.log("publisher?.id",publisher?.id)
                                                         return(
-                                                            <MenuItem name='publisherId' value={publisher?.id} onClick={popupState.close}>{publisher?.name}</MenuItem>
+                                                            <MenuItem name='publisherId' key={i} value={publisher?.id} onClick={popupState.close}>{publisher?.name}</MenuItem>
                                                         )
                                                         })
                                                 }
@@ -137,6 +166,32 @@ function AddBook() {
                                             </React.Fragment>
                                         )}
                                         </PopupState>
+                                    </MDBox> */}
+                                    <MDBox mb={3}>
+                                        <Box sx={{ minWidth: 120 }}>
+                                            <FormControl fullWidth>
+                                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                                Publisher
+                                                </InputLabel>
+                                                <NativeSelect
+                                                defaultValue={publishers[0]?.id}
+                                                inputProps={{
+                                                    name: 'publisherId',
+                                                    id: 'uncontrolled-native',
+                                                }}
+                                                >
+                                                    {
+                                                    publishers?.map((publisher, i) => {
+                                                        // console.log("publisher?.id",publisher?.id)
+                                                        return(
+                                                            <option key={i} value={publisher?.id}>{publisher?.name}</option>
+                                                            
+                                                        )
+                                                        })
+                                                    }
+                                                </NativeSelect>
+                                            </FormControl>
+                                        </Box>
                                     </MDBox>
                                     <MDBox mb={3}>
                                         <FormControlLabel
