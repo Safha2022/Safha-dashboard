@@ -27,6 +27,9 @@ import { AuthContext } from "context/Auth";
 
 function EditAdmin() {
     const { token } = useContext(AuthContext);
+    const handleOnChange = (e) => {
+        admin[e.target.name] = admin[e.target.value]
+    }
     const [admin, setAdmin] = useState({
         username: '',
         email: '',
@@ -52,19 +55,7 @@ function EditAdmin() {
             navigate('/admins')
         }
     }
-    // const deletePhoto = async (id) => {
-    //     if (window.confirm('Are you sure you want to delete this photo?')) {
-    //       const deleted = await fetch(`${process.env.REACT_APP_API_URL}/photos/${id}`, {
-    //         method: 'DELETE'
-    //       })
-    //       const result = await deleted.json()
-    //       const remainedPhotos = trip.Photos.filter((photo) => {
-    //         return photo.id !== id
-    //       })
-    //       setTrip({...trip, Photos: remainedPhotos})
-    //       alert(result.messages.join(' '))
-    //     }
-    //   }
+   
     useEffect(() => {
         async function getAdmin() {
             const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins/all`)
@@ -94,50 +85,6 @@ function EditAdmin() {
                                     <MDBox mb={3}>
                                         <TextField value={admin?.userTypeId} onChange={(e) => { setAdmin({ ...admin, userTypeId: e.target.value }) }} name="userTypeId" fullWidth label="Admin userTypeId" /></MDBox>
 
-                                    {/* <MDBox mb={3}>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <DateTimePicker
-                                                value={trip.date}
-                                                renderInput={(props) => <TextField name="date" fullWidth {...props} />}
-                                                label="Trip Date"
-                                                inputFormat="YYYY-MM-DD HH:mm:ss"
-                                                mask="____-__-__ __:__:__"
-                                                onChange={(newValue) => {
-                                                    setTrip({ ...trip, date: dayjs(newValue).format("YYYY-MM-DD HH:mm:ss") })
-                                                }}
-                                            />
-                                        </LocalizationProvider>
-                                    </MDBox> */}
-                                    {/* <MDBox mb={3}>
-                                        <Grid container spacing={2}>
-                                            {
-                                                trip.Photos.map((photo, i) => {
-                                                    return (
-                                                        <Grid item key={i}>
-                                                            <Avatar
-                                                                alt=""
-                                                                variant="square"
-                                                                src={photo.file}
-                                                                sx={{ width: 150, height: 150 }}
-                                                            />
-                                                            <IconButton aria-label="delete" onClick={() => {deletePhoto(photo.id)}}>
-                                                                <DeleteIcon />
-                                                            </IconButton>
-                                                        </Grid>
-                                                    )
-                                                })
-                                            }
-                                        </Grid>
-                                        <Button variant="contained" component="label" color='primary'>
-                                            <MDTypography color='white' variant="p">
-                                                <Grid container spacing={1}>
-                                                    <Grid item><Icon>photo_library</Icon></Grid>
-                                                    <Grid item>Upload Photos</Grid>
-                                                </Grid>
-                                            </MDTypography>
-                                            <input hidden name="photo" accept="image/*" multiple type="file" />
-                                        </Button>
-                                    </MDBox> */}
                                     <MDBox>
                                         <Button variant="contained" type="submit">
                                             <MDTypography color='white' variant="p">

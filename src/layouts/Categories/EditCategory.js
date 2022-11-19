@@ -20,6 +20,9 @@ function EditCategory() {
     
     const { token } = useContext(AuthContext);
     console.log("token",token)
+    const handleOnChange = (e) => {
+        category[e.target.name] = category[e.target.value]
+    }
     
     const [category, setCategory] = useState({
         name: '',
