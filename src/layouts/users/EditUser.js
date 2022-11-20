@@ -42,7 +42,7 @@ function EditUser() {
         // console.log("userData",userData)
         const edit = await fetch(`${process.env.REACT_APP_API_URL}/admins/edit/${id}`, {
             method: 'PUT',
-            body:   JSON.stringify(user),
+            body: JSON.stringify(user),
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
@@ -54,10 +54,15 @@ function EditUser() {
             navigate('/users')
         }
     }
-  
+
     useEffect(() => {
         async function getUser() {
-            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users`)
+            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}` , {
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
             const json = await UserData.json()
             setUser(json.data)
         }
@@ -73,12 +78,12 @@ function EditUser() {
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Edit User</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({...user, username: e.target.value})}/></MDBox>
-                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({...user, email: e.target.value})} /></MDBox>
-                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({...user, password: e.target.value})} /></MDBox>
-                                    <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.passwordConfirmation} label="User Type Id" onChange={(e) => setUser({...user, userTypeId: e.target.value})} /></MDBox>
+                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.passwordConfirmation} label="User Type Id" onChange={(e) => setUser({ ...user, userTypeId: e.target.value })} /></MDBox>
                                     <MDBox>
-                                    {/* <MDBox mb={3}>
+                                        {/* <MDBox mb={3}>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DateTimePicker
                                                 value={trip.date}
@@ -92,7 +97,7 @@ function EditUser() {
                                             />
                                         </LocalizationProvider>
                                     </MDBox> */}
-                                    {/* <MDBox mb={3}>
+                                        {/* <MDBox mb={3}>
                                         <Grid container spacing={2}>
                                             {
                                                 trip.Photos.map((photo, i) => {
@@ -122,13 +127,13 @@ function EditUser() {
                                             <input hidden name="photo" accept="image/*" multiple type="file" />
                                         </Button>
                                     </MDBox> */}
-                                    <MDBox>
-                                        <Button variant="contained" type="submit">
-                                            <MDTypography color='white' variant="p">
-                                                Edit Users
-                                            </MDTypography>
-                                        </Button>
-                                    </MDBox>
+                                        <MDBox>
+                                            <Button variant="contained" type="submit">
+                                                <MDTypography color='white' variant="p">
+                                                    Edit Users
+                                                </MDTypography>
+                                            </Button>
+                                        </MDBox>
                                     </MDBox>
                                 </MDBox>
                             </MDBox>
