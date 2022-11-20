@@ -55,13 +55,18 @@ function EditAdmin() {
             navigate('/admins')
         }
     }
-   
+
     useEffect(() => {
         async function getAdmin() {
-            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins`)
+            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}`, {
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
             const json = await AdminData.json()
             setAdmin(json.data)
-            console.log("json.data",json.data)
+            console.log("json.data", json.data)
         }
         getAdmin();
     }, [])

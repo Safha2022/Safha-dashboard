@@ -57,7 +57,7 @@ function EditUser() {
   
     useEffect(() => {
         async function getUser() {
-            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users/`)
+            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users`)
             const json = await UserData.json()
             setUser(json.data)
         }
