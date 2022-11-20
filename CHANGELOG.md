@@ -644,5 +644,5 @@ ajv                        6.9.1   →   6.10.0
 
 ### Original Release
 
-- Added Material-UI as base framework
-- Added design from Material Dashboard by Creative Tim
+<!-- - Added Material-UI as base framework
+- Added design from Material Dashboard by Creative Tim -->
