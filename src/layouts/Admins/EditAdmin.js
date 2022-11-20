@@ -58,9 +58,10 @@ function EditAdmin() {
    
     useEffect(() => {
         async function getAdmin() {
-            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins/all`)
+            const AdminData = await fetch(`${process.env.REACT_APP_API_URL}/admins`)
             const json = await AdminData.json()
             setAdmin(json.data)
+            console.log("json.data",json.data)
         }
         getAdmin();
     }, [])

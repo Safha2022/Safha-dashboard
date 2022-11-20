@@ -54,22 +54,10 @@ function EditUser() {
             navigate('/users')
         }
     }
-    // const deletePhoto = async (id) => {
-    //     if (window.confirm('Are you sure you want to delete this photo?')) {
-    //       const deleted = await fetch(`${process.env.REACT_APP_API_URL}/photos/${id}`, {
-    //         method: 'DELETE'
-    //       })
-    //       const result = await deleted.json()
-    //       const remainedPhotos = trip.Photos.filter((photo) => {
-    //         return photo.id !== id
-    //       })
-    //       setTrip({...trip, Photos: remainedPhotos})
-    //       alert(result.messages.join(' '))
-    //     }
-    //   }
+  
     useEffect(() => {
         async function getUser() {
-            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users/all`)
+            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/users/`)
             const json = await UserData.json()
             setUser(json.data)
         }

@@ -12,7 +12,7 @@ import { TextField } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "context/Auth";
 
@@ -45,6 +45,15 @@ function EditReview() {
             navigate('/reviews')
         }
     }
+    useEffect(() => {
+        async function getReview() {
+            const singleReviewData = await fetch(`${process.env.REACT_APP_API_URL}/reviews/${id}`)
+            const json = await singleReviewData.json()
+            setReview(json.data)
+            console.log("json.data",json.data)
+        }
+        getReview();
+    }, [])
     return (
         <DashboardLayout>
             <DashboardNavbar />
