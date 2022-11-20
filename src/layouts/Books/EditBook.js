@@ -40,16 +40,19 @@ function EditBook() {
         cover: '',
 
     })
+    console.log("outside edit book")
     const { id } = useParams()
     const navigate = useNavigate()
     const editBook = async (event) => {
+        console.log("inside edit book")
         event.preventDefault()
         let bookData = new FormData(event.target)
+        console.log("bookData",bookData)
         const added = await fetch(`${process.env.REACT_APP_API_URL}/books/edit/${id}`, {
             method: 'PUT',
             body:  bookData,
             headers: {
-                "Content-Type": "application/json",
+                // "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
             },
         })
