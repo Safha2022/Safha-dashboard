@@ -23,11 +23,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthContext } from "context/Auth";
 
-function EditUser() {
+function EditAuthor() {
     const handleOnChange = (e) => {
         user[e.target.name] = user[e.target.value]
     }
-    const [user, setUser] = useState({
+    const [author, setUser] = useState({
         username: '',
         email: '',
         // password: '',
@@ -37,12 +37,12 @@ function EditUser() {
     // console.log("token",token)
     const { id } = useParams()
     const navigate = useNavigate()
-    const editUser = async (event) => {
+    const editAuthor = async (event) => {
         event.preventDefault()
         // console.log("userData",userData)
         const edit = await fetch(`${process.env.REACT_APP_API_URL}/admins/edit/${id}`, {
             method: 'PUT',
-            body: JSON.stringify(user),
+            body: JSON.stringify(author),
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`,
@@ -51,12 +51,12 @@ function EditUser() {
         const json = await edit.json()
         alert(json.messages.join(' '))
         if (json.success) {
-            navigate('/users')
+            navigate('/authors')
         }
     }
 
     useEffect(() => {
-        async function getUser() {
+        async function getAuthor() {
             const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}` , {
                 method: 'get',
                 headers: {
@@ -74,17 +74,18 @@ function EditUser() {
             <Grid container spacing={6}>
                 <Grid item xs={12}>
                     <Card>
-                        <form method="post" onSubmit={editUser}>
+                        <form method="post" onSubmit={editAuthor}>
                             <MDBox p={3}>
-                                <MDTypography variant='h5'>Edit User</MDTypography>
+                                <MDTypography variant='h5'>Edit Author</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} /></MDBox>
-                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={author.username} onChange={(e) => setUser({ ...user, username: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={author.email} onChange={(e) => setUser({ ...user, email: e.target.value })} /></MDBox>
+                                    {/* <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} /></MDBox> */}
                                     <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.userTypeId} label="User Type Id" onChange={(e) => setUser({ ...user, userTypeId: e.target.value })} /></MDBox>
                                         <MDBox>
                                             <Button variant="contained" type="submit">
                                                 <MDTypography color='white' variant="p">
-                                                    Edit Users
+                                                    Edit Authors
                                                 </MDTypography>
                                             </Button>
                                         </MDBox>
@@ -98,4 +99,4 @@ function EditUser() {
     )
 }
 
-export default EditUser
+export default EditAuthor
