@@ -24,16 +24,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthContext } from "context/Auth";
 
 function EditAuthor() {
+    const { token } = useContext(AuthContext);
     const handleOnChange = (e) => {
-        user[e.target.name] = user[e.target.value]
+        author[e.target.name] = author[e.target.value]
     }
-    const [author, setUser] = useState({
+    const [author, setAuthor] = useState({
         username: '',
         email: '',
         // password: '',
         userTypeId: ''
     })
-    const { token } = useContext(AuthContext);
+    
     // console.log("token",token)
     const { id } = useParams()
     const navigate = useNavigate()
@@ -57,16 +58,17 @@ function EditAuthor() {
 
     useEffect(() => {
         async function getAuthor() {
-            const UserData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}` , {
+            const AuthorData = await fetch(`${process.env.REACT_APP_API_URL}/admins/show/${id}` , {
                 method: 'get',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             })
-            const json = await UserData.json()
-            setUser(json.data)
+            const json = await AuthorData.json()
+            setAuthor(json.data)
+            console.log("json.data", json.data)
         }
-        getUser();
+        getAuthor();
     }, [])
     return (
         <DashboardLayout>
@@ -78,10 +80,10 @@ function EditAuthor() {
                             <MDBox p={3}>
                                 <MDTypography variant='h5'>Edit Author</MDTypography>
                                 <MDBox pt={4} pb={2}>
-                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={author.username} onChange={(e) => setUser({ ...user, username: e.target.value })} /></MDBox>
-                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={author.email} onChange={(e) => setUser({ ...user, email: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={author.username} onChange={(e) => setAuthor({ ...author, username: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={author.email} onChange={(e) => setAuthor({ ...author, email: e.target.value })} /></MDBox>
                                     {/* <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} /></MDBox> */}
-                                    <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.userTypeId} label="User Type Id" onChange={(e) => setUser({ ...user, userTypeId: e.target.value })} /></MDBox>
+                                    <MDBox mb={3}><TextField name="userTypeId" fullWidth value={author.userTypeId} label="User Type Id" onChange={(e) => setAuthor({ ...author, userTypeId: e.target.value })} /></MDBox>
                                         <MDBox>
                                             <Button variant="contained" type="submit">
                                                 <MDTypography color='white' variant="p">

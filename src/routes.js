@@ -49,6 +49,7 @@ import Review from "layouts/Reviews";
 import Comment from "layouts/Comments";
 import Category from "layouts/Categories";
 import AddCategory from "layouts/Categories/AddCategory";
+import AddAuthor from "layouts/authors/AddAuthor";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -66,6 +67,7 @@ import { MdRateReview } from "react-icons/md";
 import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
 import EditUser from "layouts/users/EditUser";
+import EditAuthor from "layouts/authors/EditAuthor";
 import EditBook from "layouts/Books/EditBook";
 import EditCategory from "layouts/Categories/EditCategory";
 import EditAdmin from "layouts/Admins/EditAdmin";
@@ -121,12 +123,29 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Add Author",
+    key: "add-author",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/authors/add",
+    component: <AddAuthor />,
+    sidenav: false,
+  },
+  {
+    type: "collapse",
     name: "Authors",
     key: "author",
     icon: <RiQuillPenLine />,
     route: "/authors",
     component: <Authors />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    key: "add-author",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/authors/:id",
+    component: <EditAuthor />,
+    sidenav: false,
   },
   {
     type: "collapse",
