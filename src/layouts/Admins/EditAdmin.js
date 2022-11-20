@@ -33,7 +33,7 @@ function EditAdmin() {
     const [admin, setAdmin] = useState({
         username: '',
         email: '',
-        password: '',
+        // password: '',
         userTypeId: ''
     })
     const { id } = useParams()
@@ -85,8 +85,8 @@ function EditAdmin() {
                                     <MDBox mb={3}>
                                         <TextField value={admin?.email} onChange={(e) => { setAdmin({ ...admin, email: e.target.value }) }} name="email" fullWidth label="Admin Email" /></MDBox>
 
-                                    <MDBox mb={3}>
-                                        <TextField value={admin?.password} onChange={(e) => { setAdmin({ ...admin, password: e.target.value }) }} name="password" fullWidth label="Admin Password" /></MDBox>
+                                    {/* <MDBox mb={3}>
+                                        <TextField value={admin?.password} onChange={(e) => { setAdmin({ ...admin, password: e.target.value }) }} name="password" fullWidth label="Admin Password" /></MDBox> */}
 
                                     <MDBox mb={3}>
                                         <TextField value={admin?.userTypeId} onChange={(e) => { setAdmin({ ...admin, userTypeId: e.target.value }) }} name="userTypeId" fullWidth label="Admin userTypeId" /></MDBox>

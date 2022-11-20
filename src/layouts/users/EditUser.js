@@ -30,7 +30,7 @@ function EditUser() {
     const [user, setUser] = useState({
         username: '',
         email: '',
-        password: '',
+        // password: '',
         userTypeId: ''
     })
     const { token } = useContext(AuthContext);
@@ -80,7 +80,7 @@ function EditUser() {
                                 <MDBox pt={4} pb={2}>
                                     <MDBox mb={3}><TextField name="username" fullWidth label="Username" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} /></MDBox>
                                     <MDBox mb={3}><TextField name="email" fullWidth label="Email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} /></MDBox>
-                                    <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} /></MDBox>
+                                    {/* <MDBox mb={3}><TextField name="password" fullWidth label="Password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} /></MDBox> */}
                                     <MDBox mb={3}><TextField name="userTypeId" fullWidth value={user.passwordConfirmation} label="User Type Id" onChange={(e) => setUser({ ...user, userTypeId: e.target.value })} /></MDBox>
                                     <MDBox>
                                         {/* <MDBox mb={3}>
