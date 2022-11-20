@@ -212,7 +212,7 @@ const routes = [
   {
     type: "collapse",
     name: "Add Book",
-    key: "add-Book",
+    key: "add-book",
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/books/add",
     component: <AddBook />,

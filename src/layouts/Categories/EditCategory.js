@@ -26,7 +26,7 @@ function EditCategory() {
     
     const [category, setCategory] = useState({
         name: '',
-        des: '',
+        // des: '',
     })
     const { id } = useParams()
     const navigate = useNavigate()
@@ -50,7 +50,12 @@ function EditCategory() {
 
     useEffect(() => {
         async function getCategory() {
-            const CategoryData = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`)
+            const CategoryData = await fetch(`${process.env.REACT_APP_API_URL}/categories/${id}`,{
+                method: 'get',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
             const json = await CategoryData.json()
             setCategory(json.data)
         }
@@ -69,9 +74,9 @@ function EditCategory() {
                                     <MDBox mb={3}>
                                         <TextField value={category?.name} onChange={(e) => { setCategory({ ...category, name: e.target.value }) }} name="name" fullWidth label="category Name" />
                                     </MDBox>
-                                    <MDBox mb={3}>
-                                        <TextField value={category?.des} onChange={(e) => { setCategory({ ...category, des: e.target.value }) }} name="des" fullWidth label="category des" />
-                                    </MDBox>
+                                    {/* <MDBox mb={3}> */}
+                                        {/* <TextField value={category?.des} onChange={(e) => { setCategory({ ...category, des: e.target.value }) }} name="des" fullWidth label="category des" /> */}
+                                    {/* </MDBox> */}
 
                                     <MDBox>
                                         <Button variant="contained" type="submit">
