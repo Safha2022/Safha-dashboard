@@ -13,10 +13,12 @@ export const AuthProvider = ({children}) => {
         localStorage.setItem('token', token)
     }
     const logout = () => {
-        setToken(null)
+        setToken('')
         setLoggedIn(false)
         localStorage.removeItem('token')
     }
+     
+    
     return (
         <AuthContext.Provider value={{
             token,

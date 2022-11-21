@@ -50,6 +50,7 @@ import Comment from "layouts/Comments";
 import Category from "layouts/Categories";
 import AddCategory from "layouts/Categories/AddCategory";
 import AddAuthor from "layouts/authors/AddAuthor";
+import SignOut from "layouts/SignOut/Signout";
 // import Reviews from "layouts/review";
 //react icons
 import { RiQuillPenLine } from "react-icons/ri";
@@ -264,42 +265,7 @@ const routes = [
     component: <EditReview />,
     sidenav: false,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Tables",
-  //   key: "tables",
-  //   icon: <Icon fontSize="small">table_view</Icon>,
-  //   route: "/tables",
-  //   component: <Tables />,
-  //   sidenav: true,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Billing",
-  //   key: "billing",
-  //   icon: <Icon fontSize="small">receipt_long</Icon>,
-  //   route: "/billing",
-  //   component: <Billing />,
-  //   sidenav: true,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "RTL",
-  //   key: "rtl",
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: "/rtl",
-  //   component: <RTL />,
-  //   sidenav: true,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Notifications",
-  //   key: "notifications",
-  //   icon: <Icon fontSize="small">notifications</Icon>,
-  //   route: "/notifications",
-  //   component: <Notifications />,
-  //   sidenav: true,
-  // },
+ 
   {
     type: "collapse",
     name: "Profile",
@@ -318,15 +284,17 @@ const routes = [
     component: <SignIn />,
     sidenav: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Sign Up",
-  //   key: "sign-up",
-  //   icon: <Icon fontSize="small">assignment</Icon>,
-  //   route: "/authentication/sign-up",
-  //   component: <SignUp />,
-  //   sidenav: true,
-  // },
+  {
+    type: "collapse",
+    name: "SignOut",
+    key: "SignOut",
+    icon: <Icon fontSize="small">SignOut</Icon>,
+    route: "/authentication/sign-in",
+    component: <SignOut />,
+    sidenav: true,
+    
+  },
+
 ];
 
 export default routes;
