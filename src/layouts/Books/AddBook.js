@@ -65,25 +65,7 @@ function AddBook() {
     }
     const [publish, setPublish] = useState('')
 
-    // const [books, setBooks] = useState()
-    // const [publishers, setPublishers] = useState()
-    // useEffect(() => {
-    //     async function getCategories() {
-    //         const data = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`);
-    //         const categoriesData = await data.json()
-    //         setCategories(categoriesData.data)
-    //     }
-    //     // console.log("categoriesData",categories)
-    //     getCategories();
-
-    //     async function getPublishers() {
-    //         const data = await fetch(`${process.env.REACT_APP_API_URL}/publishers/all`);
-    //         const publishersData = await data.json()
-    //         // console.log("publishersData",publishersData)
-    //         setPublishers(publishersData.data)
-    //     }
-    //     getPublishers();
-    // }, []);
+   
     return (
         <DashboardLayout>
             <DashboardNavbar />

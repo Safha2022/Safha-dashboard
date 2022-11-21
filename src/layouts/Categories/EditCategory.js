@@ -26,7 +26,7 @@ function EditCategory() {
     
     const [category, setCategory] = useState({
         name: '',
-        // des: '',
+        des: '',
     })
     const { id } = useParams()
     const navigate = useNavigate()
@@ -74,9 +74,9 @@ function EditCategory() {
                                     <MDBox mb={3}>
                                         <TextField value={category?.name} onChange={(e) => { setCategory({ ...category, name: e.target.value }) }} name="name" fullWidth label="category Name" />
                                     </MDBox>
-                                    {/* <MDBox mb={3}> */}
-                                        {/* <TextField value={category?.des} onChange={(e) => { setCategory({ ...category, des: e.target.value }) }} name="des" fullWidth label="category des" /> */}
-                                    {/* </MDBox> */}
+                                    <MDBox mb={3}> 
+                                         <TextField value={category?.des} onChange={(e) => { setCategory({ ...category, des: e.target.value }) }} name="des" fullWidth label="category des" /> 
+                                    </MDBox>
 
                                     <MDBox>
                                         <Button variant="contained" type="submit">

@@ -20,7 +20,7 @@ function Category() {
     const columns = [
         { Header: "id", accessor: "id", align: "left" },
         { Header: "name", accessor: "name", align: "left" },
-        { Header: "des", accessor: "des", align: "center" },
+        // { Header: "des", accessor: "des", align: "center" },
         { Header: "options", accessor: "options", align: "center" },
     ];
     const [rows, setRows] = useState([]);
