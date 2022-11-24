@@ -46,9 +46,10 @@ function Category() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((category) => {
+        const jsxRows = rows?.map((category,i) => {
             return {
-                id: <>{category.id}</>,
+                // id: <>{category.id}</>,
+                id: <>{i+1}</>,
                 name: <>{category.name}</>,
                 des: <>{category.des}</>,
                 options: <>
