@@ -119,7 +119,7 @@ function Dashboard () {
             </MDBox>
           </Grid>
         </Grid>
-        <AddProfile/>
+        {/* <AddProfile/> */}
         {/* <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>

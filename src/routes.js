@@ -75,6 +75,8 @@ import EditAdmin from "layouts/Admins/EditAdmin";
 import AddAdmin from "layouts/Admins/AddAdmin";
 import AddReview from "layouts/Reviews/AddReview";
 import EditReview from "layouts/Reviews/EditReview";
+import AddProfile from "layouts/profile/AddAdminProfile";
+import AddAdminProfile from "layouts/profile/AddAdminProfile";
 
 const routes = [
   {
@@ -271,9 +273,18 @@ const routes = [
     name: "Profile",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
+    route: "/userInfos",
     component: <Profile />,
     sidenav: true,
+  },
+  {
+    type: "collapse",
+    name: "Add Profile",
+    key: "add-profile",
+    icon: <Icon fontSize="small">forest</Icon>,
+    route: "/userInfos/add",
+    component: <AddAdminProfile />,
+    sidenav: false,
   },
   {
     type: "collapse",

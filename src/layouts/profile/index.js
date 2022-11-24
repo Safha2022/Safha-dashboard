@@ -21,17 +21,17 @@ function Profile() {
   const columns = [
     { Header: "id", accessor: "id", align: "left" },
     { Header: "nickname", accessor: "nickname", align: "left" },
-    { Header: "des", accessor: "des", align: "center" },
+    // { Header: "des", accessor: "des", align: "center" },
     { Header: "avatar", accessor: "avatar", align: "center" },
     { Header: "bgPic", accessor: "bgPic", align: "center" },
-    { Header: "options", accessor: "options", align: "right" },
+    { Header: "options", accessor: "options", align: "center" },
   ];
   const [rows, setRows] = useState([]);
   const [tableRows, setTableRows] = useState([])
   const { token } = useContext(AuthContext)
   // console.log("Token is ",token)
   const deleteProfile = async (id) => {
-    if (window.confirm('Are you sure you want to delete this book?')) {
+    if (window.confirm('Are you sure you want to delete this profile?')) {
       const deleted = await fetch(`${process.env.REACT_APP_API_URL}/userInfos/` + id, {
         method: 'DELETE',
         headers: {
@@ -56,12 +56,12 @@ function Profile() {
       return {
         id: <>{userInfos.id}</>,
         nickname: <>{userInfos.nickname}</>,
-        des: <>{userInfos.des}</>,
-        cover: <>
+        // des: <>{userInfos.des}</>,
+        avatar: <>
           <Avatar
             alt=""
             variant="square"
-            src={userInfos.cover}
+            src={userInfos.avatar}
             sx={{ width: 70, height: 70 }}
           />
         </>,
