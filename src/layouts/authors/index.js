@@ -50,9 +50,9 @@ function Author() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((author) => {
+        const jsxRows = rows?.map((author,i) => {
             return {
-                id: <>{author?.id}</>,
+                id: <>{i+1}</>,
                 username: <>{author?.username}</>,
                 email: <>{author?.email}</>,
 

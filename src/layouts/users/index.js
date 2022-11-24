@@ -50,9 +50,10 @@ function Users() {
 
   }
   useEffect(() => {
-    const jsxRows = rows?.map((user) => {
+    const jsxRows = rows?.map((user, i) => {
       return {
-        id: <>{user.id}</>,
+        id: <>{i+1}</>,
+        // id: <>{user.id}</>,
         username: <>{user.username}</>,
         email: <>{user.email}</>,
         password: <>{user.password}</>,

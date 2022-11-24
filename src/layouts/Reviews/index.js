@@ -46,9 +46,9 @@ function Review() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((review) => {
+        const jsxRows = rows?.map((review,i) => {
             return {
-                id: <>{review.id}</>,
+                id: <>{i+1}</>,
                 content: <>{review.content}</>,
                 userId: <>{review.userId}</>,
                 bookId: <>{review.bookId}</>,

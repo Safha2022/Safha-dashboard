@@ -47,9 +47,9 @@ function Comment() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((comment) => {
+        const jsxRows = rows?.map((comment,i) => {
             return {
-                id: <>{comment.id}</>,
+                id: <>{i+1}</>,
                 content: <>{comment.content}</>,
                 userId: <>{comment.userId}</>,
                 reviewId: <>{comment.reviewId}</>,

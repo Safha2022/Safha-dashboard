@@ -52,12 +52,13 @@ function Book() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((book) => {
+        const jsxRows = rows?.map((book,i) => {
         // const categoryName = getCategoryName(book.categoryId)
         // console.log("categoryName", categoryName)
         // console.log("book categories",book.Categories)
         return {
-            id: <>{book.id}</>,
+            id: <>{i+1}</>,
+            // id: <>{book.id}</>,
             name: <>{book.name}</>,
             author: <>{book.author}</>,
             pagesCount: <>{book.pagesCount}</>,

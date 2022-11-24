@@ -49,9 +49,9 @@ function Admin() {
 
     }
     useEffect(() => {
-        const jsxRows = rows?.map((admin) => {
+        const jsxRows = rows?.map((admin,i) => {
             return {
-                id: <>{admin?.id}</>,
+                id: <>{i+1}</>,
                 username: <>{admin?.username}</>,
                 email: <>{admin?.email}</>,
 
