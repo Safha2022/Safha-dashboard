@@ -68,8 +68,8 @@ function EditBook() {
         }
     }
 
-    const [categories, setCategories] = useState()
-    const [publishers, setPublishers] = useState()
+    const [categories, setCategories] = useState([])
+    const [publishers, setPublishers] = useState([])
 
     useEffect(() => {
         async function getBook() {

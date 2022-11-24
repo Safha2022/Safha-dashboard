@@ -24,7 +24,9 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 
 function AddBook() {
-
+    const [publish, setPublish] = useState('')
+    const [categories, setCategories] = useState([])
+    const [publishers, setPublishers] = useState([])
     const { token } = useContext(AuthContext)
     const [book, setBook] = useState({
         name: '',
@@ -63,16 +65,14 @@ function AddBook() {
             navigate('/books')
         }
     }
-    const [publish, setPublish] = useState('')
-    const [categories, setCategories] = useState()
-    const [publishers, setPublishers] = useState()
+    
     useEffect(() => {
         async function getCategories() {
             const data = await fetch(`${process.env.REACT_APP_API_URL}/categories/all`);
             const categoriesData = await data.json()
             setCategories(categoriesData.data)
         }
-        // console.log("categoriesData",categories)
+        console.log("categoriesData",categories)
         getCategories();
         
         async function getPublishers() {
