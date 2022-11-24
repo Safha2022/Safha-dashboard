@@ -171,13 +171,13 @@ function AddBook() {
                                     <MDBox mb={3}>
                                         <FormControlLabel
                                             control={
-                                                <Checkbox value={book?.kindle} onChange={(e) => { setBook({ ...book, kindle: e.target.value }) }} name="kindle" />
+                                                <Checkbox value={1} onChange={(e) => { setBook({ ...book, kindle: e.target.value }) }} name="kindle" />
                                             }
                                             label="Kindle"
                                         />
                                         <FormControlLabel
                                             control={
-                                                <Checkbox value={book?.paper} onChange={(e) => { setBook({ ...book, paper: e.target.value }) }} name="paper" />
+                                                <Checkbox value={1} onChange={(e) => { setBook({ ...book, paper: e.target.value }) }} name="paper" />
                                             }
                                             label="Paper"
                                         />
