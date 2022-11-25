@@ -5,21 +5,21 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const SignOut = async () => {
+const SignOut = ({...props}) => {
     const { loggedIn, logout }  = useContext(AuthContext)
-    const navigate = useNavigate();
+   
+   
+   
+   
+   
+    // const navigate = useNavigate();
 
-    const json = await json()
-    console.log(json)
-    alert(json.messages.join(' '))
-    if (json.success) {
-        navigate('/sign-in')
-    }
+
     return(
         <>
             {loggedIn?
                         <button
-                            onClick={logout}
+                            {...props}
                             className="btn btn-primary w-49"
                             id='signup-bttn'>SIGN OUT
                         </button>

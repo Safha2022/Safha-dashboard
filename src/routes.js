@@ -62,8 +62,6 @@ import { BiCommentDetail } from "react-icons/bi";
 import { MdRateReview } from "react-icons/md";
 
 
-
-
 // @mui icons
 import Icon from "@mui/material/Icon";
 // import AddTrip from "layouts/trips/AddTrip";
@@ -301,7 +299,7 @@ const routes = [
     key: "SignOut",
     icon: <Icon fontSize="small">SignOut</Icon>,
     route: "/authentication/sign-in",
-    component: <SignOut />,
+    component: <SignOut/>,
     sidenav: true,
     
   },
