@@ -39,8 +39,11 @@ import { RiQuillPenLine } from "react-icons/ri";
 import { SiBookstack } from "react-icons/si";
 import { MdPeopleAlt, MdRateReview } from "react-icons/md";
 import AddProfile from "layouts/ProfileAdmin/AddAdminInfo";
+import { AuthContext } from "../../context/Auth";
+import { useContext } from "react";
 
 function Dashboard () {
+  const { token } = useContext(AuthContext)
   const { sales, tasks } = reportsLineChartData;
   const [countData, setCountData] = useState({})
   useEffect(() => {
