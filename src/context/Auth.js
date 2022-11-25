@@ -10,15 +10,13 @@ export const AuthProvider = ({children}) => {
     const login = (token) => {
         setToken(token)
         setLoggedIn(true)
-        localStorage.setItem('token', token)
+        window.localStorage.setItem('token', token)
     }
     const logout = () => {
-        setToken('')
+       window.localStorage.removeItem('token')
         setLoggedIn(false)
-        localStorage.removeItem('token')
+        setToken('')
     }
-     
-    
     return (
         <AuthContext.Provider value={{
             token,

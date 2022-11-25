@@ -2,19 +2,28 @@
 // import "./Entrance.css"
 import { AuthContext } from "../../context/Auth";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-const SignOut = () => {
-    const { loggedIn, logout } = useContext(AuthContext)
+const SignOut = async () => {
+    const { loggedIn, logout }  = useContext(AuthContext)
+    const navigate = useNavigate();
+
+    const json = await json()
+    console.log(json)
+    alert(json.messages.join(' '))
+    if (json.success) {
+        navigate('/sign-in')
+    }
     return(
         <>
-            {loggedIn?<a href="/sign-in">
+            {loggedIn?
                         <button
                             onClick={logout}
                             className="btn btn-primary w-49"
                             id='signup-bttn'>SIGN OUT
                         </button>
-                    </a> : 
+                     : 
                     <a href="/login">
                         <button
                             className="btn btn-primary w-49"

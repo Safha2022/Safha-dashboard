@@ -293,7 +293,7 @@ const routes = [
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
-    sidenav: true,
+    sidenav: false,
   },
   {
     type: "collapse",
