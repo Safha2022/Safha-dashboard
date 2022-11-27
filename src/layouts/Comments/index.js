@@ -22,7 +22,7 @@ function Comment() {
         { Header: "content", accessor: "content", align: "left" },
         { Header: "userId", accessor: "userId", align: "center" },
         { Header: "reviewId", accessor: "reviewId", align: "center" },
-        { Header: "options", accessor: "options", align: "center" },
+        { Header: "delete", accessor: "delete", align: "center" },
     ];
     const [rows, setRows] = useState([]);
     const [tableRows, setTableRows] = useState([])
@@ -53,15 +53,15 @@ function Comment() {
                 content: <>{comment.content}</>,
                 userId: <>{comment.userId}</>,
                 reviewId: <>{comment.reviewId}</>,
-                options: <>
+                delete: <>
                     <MDButton variant="text" color="error" onClick={() => { deletecomment(comment.id) }}>
                         <Icon>delete</Icon>&nbsp;delete
                     </MDButton>
-                    <Link to={`/comments/${comment.id}`}>
+                    {/* <Link to={`/comments/${comment.id}`}>
                         <MDButton variant="text" color="dark">
                             <Icon>edit</Icon>&nbsp;edit
                         </MDButton>
-                    </Link>
+                    </Link> */}
                 </>
             };
         });
@@ -104,11 +104,11 @@ function Comment() {
                                         </MDTypography>
                                     </Grid>
                                     <Grid item>
-                                        <Link to='/comments/add'>
+                                        {/* <Link to='/comments/add'>
                                             <MDButton variant="text" color="white">
                                                 <Icon>add_circle</Icon>&nbsp;Add
                                             </MDButton>
-                                        </Link>
+                                        </Link> */}
                                     </Grid>
                                 </Grid>
 

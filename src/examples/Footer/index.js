@@ -101,10 +101,10 @@ function Footer({ company, links }) {
 Footer.defaultProps = {
   company: { href: "https://safha.fjobeir.com/backend", name: "Safha Team" },
   links: [
-    { href: "https://safha.fjobeir.com/backend", name: "Safha Team" },
-    { href: "https://safha.fjobeir.com/backend", name: "About Us" },
-    { href: "https://safha.fjobeir.com/backend", name: "Blog" },
-    { href: "https://safha.fjobeir.com/backend", name: "License" },
+    { href: "https://safha.fjobeir.com/backend", name: " " },
+    { href: "https://safha.fjobeir.com/backend", name: " " },
+    { href: "https://safha.fjobeir.com/backend", name: " " },
+    { href: "https://safha.fjobeir.com/backend", name: " " },
   ],
 };
 

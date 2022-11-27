@@ -121,11 +121,11 @@ function Author() {
                                         </MDTypography>
                                     </Grid>
                                     <Grid item>
-                                        <Link to='/authors/add'>
+                                        {/* <Link to='/authors/add'>
                                             <MDButton variant="text" color="white">
                                                 <Icon>add_circle</Icon>&nbsp;Add
                                             </MDButton>
-                                        </Link>
+                                        </Link> */}
                                     </Grid>
                                 </Grid>
 
